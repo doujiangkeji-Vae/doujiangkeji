@@ -1,0 +1,16 @@
+{
+  "name": "doujiang-tech-server",
+  "version": "1.0.0",
+  "description": "豆姜科技宣传网站后端服务器",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.7",
+    "uuid": "^9.0.0"
+  }
+}

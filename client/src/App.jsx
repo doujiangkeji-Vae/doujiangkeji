@@ -23,13 +23,14 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <LanguageProvider>
-      <Router>
+    <Router>
+      <LanguageProvider>
         <ScrollToTop />
         <div className="app">
           <Navbar />
           <main>
             <Routes>
+              {/* 英文版路由 */}
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/products" element={<Products />} />
@@ -39,12 +40,23 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/login" element={<Login />} />
+
+              {/* 中文版路由 */}
+              <Route path="/cn" element={<Home />} />
+              <Route path="/cn/about" element={<About />} />
+              <Route path="/cn/products" element={<Products />} />
+              <Route path="/cn/news" element={<News />} />
+              <Route path="/cn/news/:id" element={<News />} />
+              <Route path="/cn/contact" element={<Contact />} />
+              <Route path="/cn/mail" element={<Mail />} />
+              <Route path="/cn/login" element={<Login />} />
+              <Route path="/cn/admin" element={<Admin />} />
             </Routes>
           </main>
           <Footer />
         </div>
-      </Router>
-    </LanguageProvider>
+      </LanguageProvider>
+    </Router>
   );
 }
 

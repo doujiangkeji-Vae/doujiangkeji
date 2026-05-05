@@ -4,6 +4,7 @@ import './Footer.css';
 
 function Footer() {
   const { lang } = useLanguage();
+  const prefix = lang === 'zh' ? '/cn' : '';
   return (
     <footer className="footer">
       <div className="footer__glow footer__glow--blue"></div>
@@ -32,19 +33,19 @@ function Footer() {
 
           <div className="footer__links-group">
             <h4 className="footer__links-title">{t(lang, 'footer.productService')}</h4>
-            <Link to="/products" className="footer__link">AI记忆助手</Link>
-            <Link to="/products" className="footer__link">AI拾音工牌</Link>
-            <Link to="/products" className="footer__link">Hermes Agent</Link>
-            <Link to="/products" className="footer__link">OpenClaw应用</Link>
+            <Link to={`${prefix}/products`} className="footer__link">AI记忆助手</Link>
+            <Link to={`${prefix}/products`} className="footer__link">AI拾音工牌</Link>
+            <Link to={`${prefix}/products`} className="footer__link">Hermes Agent</Link>
+            <Link to={`${prefix}/products`} className="footer__link">OpenClaw应用</Link>
           </div>
 
           <div className="footer__links-group">
             <h4 className="footer__links-title">{t(lang, 'footer.aboutCompany')}</h4>
-            <Link to="/about" className="footer__link">{t(lang, 'footer.companyIntro')}</Link>
-            <Link to="/about" className="footer__link">{t(lang, 'footer.teamMembers')}</Link>
-            <Link to="/news" className="footer__link">{t(lang, 'footer.newsLink')}</Link>
-            <Link to="/contact" className="footer__link">{t(lang, 'footer.contactUs')}</Link>
-            <Link to="/mail" className="footer__link">{t(lang, 'footer.enterpriseEmail')}</Link>
+            <Link to={`${prefix}/about`} className="footer__link">{t(lang, 'footer.companyIntro')}</Link>
+            <Link to={`${prefix}/about`} className="footer__link">{t(lang, 'footer.teamMembers')}</Link>
+            <Link to={`${prefix}/news`} className="footer__link">{t(lang, 'footer.newsLink')}</Link>
+            <Link to={`${prefix}/contact`} className="footer__link">{t(lang, 'footer.contactUs')}</Link>
+            <Link to={`${prefix}/mail`} className="footer__link">{t(lang, 'footer.enterpriseEmail')}</Link>
           </div>
 
           <div className="footer__links-group">

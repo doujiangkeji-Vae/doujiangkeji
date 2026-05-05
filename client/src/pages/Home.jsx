@@ -8,6 +8,7 @@ import './Home.css';
 
 function Home() {
   const { lang } = useLanguage();
+  const prefix = lang === 'zh' ? '/cn' : '';
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -50,13 +51,13 @@ function Home() {
             {t(lang, 'home.subtitle')}
           </p>
           <div className="hero__actions">
-            <Link to="/products" className="btn btn-primary">
+            <Link to={`${prefix}/products`} className="btn btn-primary">
               {t(lang, 'home.exploreProducts')}
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
-            <Link to="/about" className="btn btn-outline">
+            <Link to={`${prefix}/about`} className="btn btn-outline">
               {t(lang, 'home.learnMore')}
             </Link>
           </div>
@@ -89,7 +90,7 @@ function Home() {
                       <span key={i} className="product-card__tag">{f}</span>
                     ))}
                   </div>
-                  <Link to="/products" className="product-card__link">
+                  <Link to={`${prefix}/products`} className="product-card__link">
                     {t(lang, 'home.viewDetails')}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M5 12h14M12 5l7 7-7 7" />
@@ -101,7 +102,7 @@ function Home() {
           </div>
           <ScrollAnimation>
             <div className="home-products__more">
-              <Link to="/products" className="btn btn-outline">
+              <Link to={`${prefix}/products`} className="btn btn-outline">
                 {t(lang, 'home.viewAllProducts')}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
@@ -155,7 +156,7 @@ function Home() {
           <div className="home-news__grid">
             {newsArticles.slice(0, 3).map((article, index) => (
               <ScrollAnimation key={article.id} delay={index * 100}>
-                <Link to={`/news/${article.id}`} className="news-card">
+                <Link to={`${prefix}/news/${article.id}`} className="news-card">
                   <div className="news-card__category">{article.category[lang] || article.category}</div>
                   <h3 className="news-card__title">{article.title[lang] || article.title}</h3>
                   <p className="news-card__summary">{article.summary[lang] || article.summary}</p>
@@ -175,7 +176,7 @@ function Home() {
           </div>
           <ScrollAnimation>
             <div className="home-news__more">
-              <Link to="/news" className="btn btn-outline">
+              <Link to={`${prefix}/news`} className="btn btn-outline">
                 {t(lang, 'home.viewAllNews')}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />

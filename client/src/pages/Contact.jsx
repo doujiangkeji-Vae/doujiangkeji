@@ -6,6 +6,7 @@ import './Contact.css';
 
 function Contact() {
   const { lang } = useLanguage();
+  const prefix = lang === 'zh' ? '/cn' : '';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -170,7 +171,7 @@ function Contact() {
                       <p className="contact-info-card__text">{t(lang, 'contact.hoursText')}</p>
                     </div>
                   </div>
-                  <Link to="/mail" className="contact-info-card contact-info-card--mail">
+                  <Link to={`${prefix}/mail`} className="contact-info-card contact-info-card--mail">
                     <div className="contact-info-card__icon">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />

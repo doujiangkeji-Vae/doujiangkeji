@@ -7,7 +7,8 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  const { lang, toggleLanguage } = useLanguage();
+  const { lang, switchLanguage } = useLanguage();
+  const prefix = lang === 'zh' ? '/cn' : '';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,17 +23,17 @@ function Navbar() {
   }, [location]);
 
   const navLinks = [
-    { path: '/', label: t(lang, 'nav.home') },
-    { path: '/news', label: t(lang, 'nav.news') },
-    { path: '/about', label: t(lang, 'nav.about') },
-    { path: '/products', label: t(lang, 'nav.products') },
-    { path: '/contact', label: t(lang, 'nav.contact') }
+    { path: `${prefix}/`, label: t(lang, 'nav.home') },
+    { path: `${prefix}/news`, label: t(lang, 'nav.news') },
+    { path: `${prefix}/about`, label: t(lang, 'nav.about') },
+    { path: `${prefix}/products`, label: t(lang, 'nav.products') },
+    { path: `${prefix}/contact`, label: t(lang, 'nav.contact') }
   ];
 
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__container container">
-        <Link to="/" className="navbar__logo">
+        <Link to={`${prefix}/`} className="navbar__logo">
           <div className="navbar__logo-icon">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
               <defs>
@@ -63,10 +64,10 @@ function Navbar() {
 
         <button
           className="navbar__lang-btn"
-          onClick={toggleLanguage}
+          onClick={() => switchLanguage(lang === 'zh' ? 'en' : 'zh')}
           title={lang === 'en' ? '切换中文' : 'Switch to English'}
         >
-          {lang === 'en' ? '中' : 'EN'}
+          {lang === 'en' ? '中文' : 'EN'}
         </button>
 
         <button

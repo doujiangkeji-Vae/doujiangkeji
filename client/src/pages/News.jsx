@@ -8,6 +8,7 @@ import './News.css';
 function News() {
   const { id } = useParams();
   const { lang } = useLanguage();
+  const prefix = lang === 'zh' ? '/cn' : '';
 
   if (id) {
     const article = newsArticles.find(a => a.id === parseInt(id));
@@ -17,7 +18,7 @@ function News() {
           <div className="container" style={{ padding: '140px 24px', textAlign: 'center' }}>
             <h1>{t(lang, 'news.articleNotFound')}</h1>
             <p style={{ color: 'var(--text-secondary)', marginTop: '16px' }}>{t(lang, 'news.articleNotFoundDesc')}</p>
-            <Link to="/news" className="btn btn-primary" style={{ marginTop: '24px' }}>{t(lang, 'news.backToList')}</Link>
+            <Link to={`${prefix}/news`} className="btn btn-primary" style={{ marginTop: '24px' }}>{t(lang, 'news.backToList')}</Link>
           </div>
         </div>
       );
@@ -30,6 +31,7 @@ function News() {
 
 function NewsList() {
   const { lang } = useLanguage();
+  const prefix = lang === 'zh' ? '/cn' : '';
   const allKey = '__all__';
   const categoryKeys = [...new Set(newsArticles.map(a => {
     const c = a.category[lang] || a.category;
@@ -92,7 +94,7 @@ function NewsList() {
           <div className="news-list">
             {paged.map((article, index) => (
               <ScrollAnimation key={article.id} delay={index * 60}>
-                <Link to={`/news/${article.id}`} className="news-list__item">
+                <Link to={`${prefix}/news/${article.id}`} className="news-list__item">
                   <div className="news-list__item-content">
                     <div className="news-list__item-meta">
                       <span className="news-list__item-category">{article.category[lang] || article.category}</span>
@@ -152,12 +154,13 @@ function NewsList() {
 
 function NewsDetail({ article }) {
   const { lang } = useLanguage();
+  const prefix = lang === 'zh' ? '/cn' : '';
 
   return (
     <div className="page-wrapper">
       <section className="news-detail">
         <div className="container">
-          <Link to="/news" className="news-detail__back">
+          <Link to={`${prefix}/news`} className="news-detail__back">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
@@ -193,7 +196,7 @@ function NewsDetail({ article }) {
             })}
           </div>
           <div className="news-detail__footer">
-            <Link to="/news" className="btn btn-outline">
+            <Link to={`${prefix}/news`} className="btn btn-outline">
               {t(lang, 'news.backToList')}
             </Link>
           </div>

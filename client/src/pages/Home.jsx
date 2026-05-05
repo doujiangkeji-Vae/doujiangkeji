@@ -3,17 +3,19 @@ import { Link } from 'react-router-dom';
 import ScrollAnimation from '../components/ScrollAnimation';
 import { useCountUp, useScrollAnimation } from '../hooks/useAnimations';
 import { products, newsArticles } from '../data/mockData';
+import { useLanguage, t } from '../i18n';
 import './Home.css';
 
 function Home() {
+  const { lang } = useLanguage();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
   const stats = [
-    { value: 2026, suffix: '', label: '成立年份', isYear: true },
-    { value: 1, suffix: '', label: '软著数量' },
-    { value: 100, suffix: '+', label: '服务客户' },
-    { value: 3, suffix: '', label: '产品线' }
+    { value: 2026, suffix: '', label: t(lang, 'home.stat1'), isYear: true },
+    { value: 1, suffix: '', label: t(lang, 'home.stat2') },
+    { value: 100, suffix: '+', label: t(lang, 'home.stat3') },
+    { value: 3, suffix: '', label: t(lang, 'home.stat4') }
   ];
 
   return (
@@ -38,24 +40,24 @@ function Home() {
         <div className="hero__content container">
           <div className="hero__badge">
             <span className="hero__badge-dot"></span>
-            AI穿戴式硬件探索者
+            {t(lang, 'home.badge')}
           </div>
           <h1 className="hero__title hero__title--large">
-            智造未来{' '}
-            <span className="hero__title-accent">连接万物</span>
+            {t(lang, 'home.title1')}{' '}
+            <span className="hero__title-accent">{t(lang, 'home.title2')}</span>
           </h1>
           <p className="hero__subtitle">
-            豆姜科技专注于AI穿戴式硬件技术研发，提供24小时AI记忆伙伴，AI智能硬件投资，AI拾音工牌，提供传统企业AI转型全套解决方案，助力企业数字转型，让智能触手可及。
+            {t(lang, 'home.subtitle')}
           </p>
           <div className="hero__actions">
             <Link to="/products" className="btn btn-primary">
-              探索产品
+              {t(lang, 'home.exploreProducts')}
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
             <Link to="/about" className="btn btn-outline">
-              了解更多
+              {t(lang, 'home.learnMore')}
             </Link>
           </div>
           <div className="hero__stats">
@@ -70,8 +72,8 @@ function Home() {
       <section className="section home-products">
         <div className="container">
           <ScrollAnimation>
-            <h2 className="section-title">核心产品</h2>
-            <p className="section-subtitle">覆盖物联网全场景的智能硬件产品矩阵</p>
+            <h2 className="section-title">{t(lang, 'home.coreProducts')}</h2>
+            <p className="section-subtitle">{t(lang, 'home.coreProductsDesc')}</p>
           </ScrollAnimation>
           <div className="home-products__grid">
             {products.slice(0, 4).map((product, index) => (
@@ -88,7 +90,7 @@ function Home() {
                     ))}
                   </div>
                   <Link to="/products" className="product-card__link">
-                    了解详情
+                    {t(lang, 'home.viewDetails')}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
@@ -100,7 +102,7 @@ function Home() {
           <ScrollAnimation>
             <div className="home-products__more">
               <Link to="/products" className="btn btn-outline">
-                查看全部产品
+                {t(lang, 'home.viewAllProducts')}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
@@ -110,7 +112,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - temporarily hidden
       <section className="section home-stats">
         <div className="home-stats__bg">
           <div className="home-stats__glow home-stats__glow--blue"></div>
@@ -118,8 +120,8 @@ function Home() {
         </div>
         <div className="container">
           <ScrollAnimation>
-            <h2 className="section-title">用数据说话</h2>
-            <p className="section-subtitle">持续创新，稳健发展，赢得行业认可</p>
+            <h2 className="section-title">{t(lang, 'home.dataTitle')}</h2>
+            <p className="section-subtitle">{t(lang, 'home.dataDesc')}</p>
           </ScrollAnimation>
           <div className="home-stats__grid">
             {[
@@ -141,25 +143,27 @@ function Home() {
           </div>
         </div>
       </section>
+      */}
 
       {/* News Section */}
       <section className="section home-news">
         <div className="container">
           <ScrollAnimation>
-            <h2 className="section-title">新闻资讯</h2>
-            <p className="section-subtitle">了解豆姜科技最新动态</p>
+            <h2 className="section-title">{t(lang, 'home.newsTitle')}</h2>
+            <p className="section-subtitle">{t(lang, 'home.newsDesc')}</p>
           </ScrollAnimation>
           <div className="home-news__grid">
             {newsArticles.slice(0, 3).map((article, index) => (
               <ScrollAnimation key={article.id} delay={index * 100}>
                 <Link to={`/news/${article.id}`} className="news-card">
-                  <div className="news-card__category">{article.category}</div>
-                  <h3 className="news-card__title">{article.title}</h3>
-                  <p className="news-card__summary">{article.summary}</p>
+                  <div className="news-card__category">{article.category[lang] || article.category}</div>
+                  <h3 className="news-card__title">{article.title[lang] || article.title}</h3>
+                  <p className="news-card__summary">{article.summary[lang] || article.summary}</p>
                   <div className="news-card__meta">
                     <span className="news-card__date">{article.date}</span>
+                    {article.source && <span className="news-card__source">{article.source[lang] || article.source}</span>}
                     <span className="news-card__read-more">
-                      阅读全文
+                      {t(lang, 'home.readMore')}
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
@@ -172,7 +176,7 @@ function Home() {
           <ScrollAnimation>
             <div className="home-news__more">
               <Link to="/news" className="btn btn-outline">
-                查看全部资讯
+                {t(lang, 'home.viewAllNews')}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
@@ -188,12 +192,12 @@ function Home() {
           <ScrollAnimation>
             <div className="newsletter">
               <div className="newsletter__glow"></div>
-              <h2 className="newsletter__title">订阅我们的资讯</h2>
-              <p className="newsletter__desc">获取豆姜科技最新产品动态和行业洞察</p>
+              <h2 className="newsletter__title">{t(lang, 'home.subscribeTitle')}</h2>
+              <p className="newsletter__desc">{t(lang, 'home.subscribeDesc')}</p>
               <div className="newsletter__form">
                 <input
                   type="email"
-                  placeholder="请输入您的邮箱地址"
+                  placeholder={t(lang, 'home.subscribePlaceholder')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="newsletter__input"
@@ -208,11 +212,11 @@ function Home() {
                     }
                   }}
                 >
-                  {subscribed ? '已订阅!' : '立即订阅'}
+                  {subscribed ? t(lang, 'home.subscribed') : t(lang, 'home.subscribeBtn')}
                 </button>
               </div>
               {subscribed && (
-                <p className="newsletter__success">感谢您的订阅！我们会将最新资讯发送到您的邮箱。</p>
+                <p className="newsletter__success">{t(lang, 'home.subscribeSuccess')}</p>
               )}
             </div>
           </ScrollAnimation>

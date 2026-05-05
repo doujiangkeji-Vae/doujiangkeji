@@ -1,11 +1,13 @@
 import { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ScrollAnimation from '../components/ScrollAnimation';
+import { useLanguage, t } from '../i18n';
 import { newsArticles } from '../data/mockData';
 import './News.css';
 
 function News() {
   const { id } = useParams();
+  const { lang } = useLanguage();
 
   if (id) {
     const article = newsArticles.find(a => a.id === parseInt(id));
@@ -13,9 +15,9 @@ function News() {
       return (
         <div className="page-wrapper">
           <div className="container" style={{ padding: '140px 24px', textAlign: 'center' }}>
-            <h1>文章未找到</h1>
-            <p style={{ color: 'var(--text-secondary)', marginTop: '16px' }}>您访问的文章不存在</p>
-            <Link to="/news" className="btn btn-primary" style={{ marginTop: '24px' }}>返回资讯列表</Link>
+            <h1>{t(lang, 'news.articleNotFound')}</h1>
+            <p style={{ color: 'var(--text-secondary)', marginTop: '16px' }}>{t(lang, 'news.articleNotFoundDesc')}</p>
+            <Link to="/news" className="btn btn-primary" style={{ marginTop: '24px' }}>{t(lang, 'news.backToList')}</Link>
           </div>
         </div>
       );
@@ -27,14 +29,33 @@ function News() {
 }
 
 function NewsList() {
-  const categories = ['全部', ...new Set(newsArticles.map(a => a.category))];
-  const [activeCategory, setActiveCategory] = useState('全部');
+  const { lang } = useLanguage();
+  const allKey = '__all__';
+  const categoryKeys = [...new Set(newsArticles.map(a => {
+    const c = a.category[lang] || a.category;
+    return typeof c === 'object' ? c.zh : c;
+  }))];
+  const categories = [allKey, ...categoryKeys];
+  const [activeCategory, setActiveCategory] = useState(allKey);
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 6;
 
-  const filtered = activeCategory === '全部'
+  const getCategoryLabel = (cat) => {
+    if (cat === allKey) return t(lang, 'news.all');
+    const article = newsArticles.find(a => {
+      const c = a.category[lang] || a.category;
+      return (typeof c === 'object' ? c.zh : c) === cat;
+    });
+    if (article) return (article.category[lang] || article.category);
+    return cat;
+  };
+
+  const filtered = activeCategory === allKey
     ? newsArticles
-    : newsArticles.filter(a => a.category === activeCategory);
+    : newsArticles.filter(a => {
+        const c = a.category[lang] || a.category;
+        return (typeof c === 'object' ? c.zh : c) === activeCategory;
+      });
 
   const totalPages = Math.ceil(filtered.length / perPage);
   const paged = filtered.slice((currentPage - 1) * perPage, currentPage * perPage);
@@ -47,8 +68,8 @@ function NewsList() {
           <div className="news-hero__glow news-hero__glow--2"></div>
         </div>
         <div className="container news-hero__content">
-          <h1 className="news-hero__title">资讯中心</h1>
-          <p className="news-hero__subtitle">了解豆姜科技最新动态与行业洞察</p>
+          <h1 className="news-hero__title">{t(lang, 'news.title')}</h1>
+          <p className="news-hero__subtitle">{t(lang, 'news.subtitle')}</p>
         </div>
       </section>
 
@@ -62,7 +83,7 @@ function NewsList() {
                   className={`news-filter__btn ${activeCategory === cat ? 'news-filter__btn--active' : ''}`}
                   onClick={() => { setActiveCategory(cat); setCurrentPage(1); }}
                 >
-                  {cat}
+                  {getCategoryLabel(cat)}
                 </button>
               ))}
             </div>
@@ -74,13 +95,14 @@ function NewsList() {
                 <Link to={`/news/${article.id}`} className="news-list__item">
                   <div className="news-list__item-content">
                     <div className="news-list__item-meta">
-                      <span className="news-list__item-category">{article.category}</span>
+                      <span className="news-list__item-category">{article.category[lang] || article.category}</span>
                       <span className="news-list__item-date">{article.date}</span>
+                      {article.source && <span className="news-list__item-source">{article.source[lang] || article.source}</span>}
                     </div>
-                    <h3 className="news-list__item-title">{article.title}</h3>
-                    <p className="news-list__item-summary">{article.summary}</p>
+                    <h3 className="news-list__item-title">{article.title[lang] || article.title}</h3>
+                    <p className="news-list__item-summary">{article.summary[lang] || article.summary}</p>
                     <span className="news-list__item-read">
-                      阅读全文
+                      {t(lang, 'news.readMore')}
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
@@ -129,6 +151,8 @@ function NewsList() {
 }
 
 function NewsDetail({ article }) {
+  const { lang } = useLanguage();
+
   return (
     <div className="page-wrapper">
       <section className="news-detail">
@@ -137,18 +161,18 @@ function NewsDetail({ article }) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
-            返回资讯列表
+            {t(lang, 'news.backToList')}
           </Link>
           <div className="news-detail__header">
-            <span className="news-detail__category">{article.category}</span>
-            <h1 className="news-detail__title">{article.title}</h1>
+            <span className="news-detail__category">{article.category[lang] || article.category}</span>
+            <h1 className="news-detail__title">{article.title[lang] || article.title}</h1>
             <div className="news-detail__meta">
               <span className="news-detail__date">{article.date}</span>
-              <span className="news-detail__source">豆姜科技</span>
+              {article.source && <span className="news-detail__source">{article.source[lang] || article.source}</span>}
             </div>
           </div>
           <div className="news-detail__content">
-            {article.content.split('\n\n').map((paragraph, index) => {
+            {(article.content[lang] || article.content).split('\n\n').map((paragraph, index) => {
               if (paragraph.startsWith('- ') || paragraph.match(/^\d+\./)) {
                 const items = paragraph.split('\n');
                 return (
@@ -170,7 +194,7 @@ function NewsDetail({ article }) {
           </div>
           <div className="news-detail__footer">
             <Link to="/news" className="btn btn-outline">
-              返回资讯列表
+              {t(lang, 'news.backToList')}
             </Link>
           </div>
         </div>

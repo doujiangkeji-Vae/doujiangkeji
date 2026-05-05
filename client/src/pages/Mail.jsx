@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useLanguage, t } from '../i18n';
 import './Mail.css';
 
 function Mail() {
+  const { lang } = useLanguage();
   const [activeTab, setActiveTab] = useState('inbox');
   const [selectedMail, setSelectedMail] = useState(null);
   const [showCompose, setShowCompose] = useState(false);
@@ -43,8 +45,8 @@ function Mail() {
     <div className="page-wrapper">
       <section className="mail-hero">
         <div className="container mail-hero__content">
-          <h1 className="mail-hero__title">企业邮箱</h1>
-          <p className="mail-hero__subtitle">高效沟通，协作无间</p>
+          <h1 className="mail-hero__title">{t(lang, 'mail.title')}</h1>
+          <p className="mail-hero__subtitle">{t(lang, 'mail.subtitle')}</p>
         </div>
       </section>
 
@@ -57,7 +59,7 @@ function Mail() {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 5v14M5 12h14" />
                 </svg>
-                写邮件
+                {t(lang, 'mail.compose')}
               </button>
               <nav className="mail-nav">
                 <button
@@ -68,7 +70,7 @@ function Mail() {
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
                   </svg>
-                  收件箱
+                  {t(lang, 'mail.inbox')}
                   {!inboxMails.every(m => m.read) && (
                     <span className="mail-nav__badge">{inboxMails.filter(m => !m.read).length}</span>
                   )}
@@ -81,7 +83,7 @@ function Mail() {
                     <line x1="22" y1="2" x2="11" y2="13" />
                     <polygon points="22 2 15 22 11 13 2 9 22 2" />
                   </svg>
-                  已发送
+                  {t(lang, 'mail.sent')}
                 </button>
               </nav>
             </aside>
@@ -142,7 +144,7 @@ function Mail() {
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
                   </svg>
-                  <p>选择一封邮件查看详情</p>
+                  <p>{t(lang, 'mail.noEmail')}</p>
                 </div>
               )}
             </div>
@@ -155,7 +157,7 @@ function Mail() {
         <div className="mail-compose-overlay" onClick={() => setShowCompose(false)}>
           <div className="mail-compose" onClick={e => e.stopPropagation()}>
             <div className="mail-compose__header">
-              <h3>写邮件</h3>
+              <h3>{t(lang, 'mail.compose')}</h3>
               <button className="mail-compose__close" onClick={() => setShowCompose(false)}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M18 6L6 18M6 6l12 12" />
@@ -164,29 +166,29 @@ function Mail() {
             </div>
             <div className="mail-compose__form">
               <div className="mail-compose__field">
-                <label>收件人</label>
+                <label>{t(lang, 'mail.to')}</label>
                 <input
                   type="text"
                   value={composeData.to}
                   onChange={e => setComposeData({ ...composeData, to: e.target.value })}
-                  placeholder="请输入收件人"
+                  placeholder={t(lang, 'mail.toPlaceholder')}
                 />
               </div>
               <div className="mail-compose__field">
-                <label>主题</label>
+                <label>{t(lang, 'mail.subject')}</label>
                 <input
                   type="text"
                   value={composeData.subject}
                   onChange={e => setComposeData({ ...composeData, subject: e.target.value })}
-                  placeholder="请输入邮件主题"
+                  placeholder={t(lang, 'mail.subjectPlaceholder')}
                 />
               </div>
               <div className="mail-compose__field">
-                <label>正文</label>
+                <label>{t(lang, 'mail.body')}</label>
                 <textarea
                   value={composeData.body}
                   onChange={e => setComposeData({ ...composeData, body: e.target.value })}
-                  placeholder="请输入邮件内容..."
+                  placeholder={t(lang, 'mail.bodyPlaceholder')}
                   rows="10"
                 ></textarea>
               </div>
@@ -196,13 +198,13 @@ function Mail() {
                     <line x1="22" y1="2" x2="11" y2="13" />
                     <polygon points="22 2 15 22 11 13 2 9 22 2" />
                   </svg>
-                  发送
+                  {t(lang, 'mail.send')}
                 </button>
                 <button className="btn btn-outline" onClick={() => setShowCompose(false)}>
-                  取消
+                  {t(lang, 'mail.back')}
                 </button>
                 {sentSuccess && (
-                  <span className="mail-compose__success">邮件发送成功!</span>
+                  <span className="mail-compose__success">{t(lang, 'mail.sendSuccess')}</span>
                 )}
               </div>
             </div>

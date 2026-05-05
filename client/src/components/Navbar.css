@@ -164,3 +164,23 @@
     text-align: center;
   }
 }
+
+.navbar__lang-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.navbar__lang-btn:hover {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}

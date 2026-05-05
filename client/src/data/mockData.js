@@ -24,13 +24,13 @@ export const products = [
   },
   {
     id: 3,
-    name: 'DJ-AiTag AI智能标识',
-    category: 'AI标识',
-    brief: 'AI驱动的智能身份标识，支持人脸识别、语音交互、行为分析',
-    description: 'DJ-AiTag 是一款融合AI视觉与语音能力的智能标识终端。搭载自研AI芯片，支持毫秒级人脸识别与身份核验，识别准确率达99.7%。内置语音交互引擎，可实现智能问答与信息播报。支持人员行为分析、轨迹追踪、异常预警等功能。广泛应用于智慧园区、企业门禁、展会签到、VIP接待等场景。支持API对接，可快速集成到现有管理系统。',
-    features: ['99.7%人脸识别准确率', 'AI语音交互', '行为分析与预警', '毫秒级响应', 'API开放对接', '支持10万人脸库'],
+    name: 'Hermes Agent应用',
+    category: 'AI Agent',
+    brief: '企业级AI智能体平台，可视化工作流编排，多模态AI能力集成',
+    description: 'Hermes 是豆姜科技推出的企业级AI Agent应用平台。支持可视化工作流编排，无需代码即可构建复杂的AI自动化流程。内置多模态AI能力，支持文本、语音、图像、视频的智能理解与生成。提供企业知识库接入、私有化部署、多LLM模型切换等核心功能。广泛应用于智能客服、文档处理、数据分析、营销自动化等企业场景。开放API接口，可快速集成到现有业务系统。',
+    features: ['可视化工作流编排', '多模态AI能力', '企业知识库接入', '私有化部署', '多LLM模型切换', '开放API接口'],
     image: null,
-    specs: { 'AI芯片': '自研NPU神经网络处理器', '识别速度': '≤200ms', '人脸库': '支持10万人脸', '屏幕': '5.5英寸IPS高清屏', '摄像头': '200万像素广角', '接口': 'Wi-Fi / 4G / RJ45' }
+    specs: { '支持模型': 'DeepSeek / GPT / Claude / GLM', '部署方式': '云端 / 私有化 / 混合云', '知识库': '支持百万级文档', '并发处理': '支持1000+并发', '接口': 'RESTful API / SDK', '安全': '数据加密 / 权限管控' }
   },
   {
     id: 4,
@@ -68,75 +68,111 @@ export const products = [
 export const newsArticles = [
   {
     id: 1,
-    title: '2026年被广泛认可为"AI元年"，大模型进入规模化落地阶段',
-    category: '行业动态',
-    date: '2026-04-10',
-    summary: '人工智能产业迎来历史性拐点，从技术探索正式迈入规模化应用、产业化落地的全新阶段。',
-    content: '2026年，人工智能产业迎来历史性拐点——从过去数年的技术探索、概念炒作，正式迈入规模化应用、产业化落地的全新阶段，"2026 AI元年"被行业广泛认可。\n\n大模型领域，国内Token消耗量迎来爆发式增长。字节跳动豆包大模型的日均调用量在不到两个月内上涨超过60%，MiniMax、智谱AI等厂商也呈现类似趋势。月之暗面创始人杨植麟在中关村论坛年会上表示，大模型训练已进入第三个阶段——从2023-2024年的天然数据与人工标注阶段，到2025年的人工精选阶段，2026年起正式进入AI主导研究的全新阶段。\n\n在应用层面，AI Agent（智能体）成为最热门赛道，编程辅助、文档处理、客服问答等场景快速落地。业内人士普遍认为，2026年将成为AI大模型发展的关键拐点年。'
+    title: { zh: 'Anthropic发布Claude Opus 4.7，AI大模型竞争进入新阶段', en: 'Anthropic Releases Claude Opus 4.7 — AI Model Competition Enters New Era' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-04-18',
+    summary: { zh: 'Anthropic于4月17日正式推出Claude Opus 4.7，在软件工程、金融分析、视觉能力等方面实现全面跃升，与OpenAI GPT系列展开激烈竞争。', en: 'Anthropic officially launched Claude Opus 4.7 on April 17, achieving comprehensive improvements in software engineering, financial analysis, and visual capabilities, intensifying competition with OpenAI\'s GPT series.' },
+    content: {
+      zh: '2026年4月17日，Anthropic正式推出Claude Opus 4.7，作为Opus 4.6的直接升级版，在多个核心维度实现全面跃升。\n\n**核心升级亮点：**\n\n1. **指令遵循能力大幅提升**：Opus 4.7彻底告别"糊弄式"回答，在复杂指令的精准执行方面表现突出。\n\n2. **软件工程能力突破**：在代码生成、调试和架构设计方面显著增强，部分基准测试中超越GPT-5.4。\n\n3. **视觉能力进化**：新增对复杂图表、技术文档和手写内容的精准识别能力。\n\n4. **专业任务处理**：在金融分析、法律文书、医学报告等专业领域表现大幅提升。\n\n4月17日堪称AI圈超级发布日，OpenAI、Anthropic、昆仑万维、智元机器人集中上新，全球AI格局一夜刷新。业内人士分析，2026年大模型竞争已从单纯的参数规模竞赛转向实际应用效果的比拼。',
+      en: 'On April 17, 2026, Anthropic officially launched Claude Opus 4.7 as a direct upgrade to Opus 4.6, achieving comprehensive improvements across multiple core dimensions.\n\n**Key Upgrades:**\n\n1. **Instruction Following**: Opus 4.7 eliminates "evasive" responses, excelling in precise execution of complex instructions.\n\n2. **Software Engineering**: Significant enhancements in code generation, debugging, and architecture design, surpassing GPT-5.4 in some benchmarks.\n\n3. **Visual Capabilities**: New precise recognition abilities for complex charts, technical documents, and handwritten content.\n\n4. **Professional Tasks**: Major improvements in financial analysis, legal documents, and medical reports.\n\nApril 17 was a super release day for the AI industry, with OpenAI, Anthropic, Kunlun Tech, and Zhiyuan Robotics all launching new products simultaneously, reshaping the global AI landscape overnight.'
+    },
+    source: { zh: '来源：今日头条、搜狐科技', en: 'Source: Toutiao, Sohu Tech' }
   },
   {
     id: 2,
-    title: 'AI眼镜大战全面爆发，Meta、小米、苹果等巨头密集下场',
-    category: '行业动态',
-    date: '2026-03-28',
-    summary: '一场关乎未来十年科技走向的下一代入口争夺战，正以AI眼镜、AI耳机为核心战场全面打响。',
-    content: '2026年开年，科技圈风云突变，AI眼镜赛道全面爆发。Meta、小米、阿里、苹果等巨头密集下场，围绕"下一代智能入口"展开激烈竞争。\n\n市场研究机构Grand View Research数据显示，2024年全球智能眼镜市场规模为19.3亿美元，预计到2030年将以27.3%的复合年增长率持续增长。而The Business Research Company预测，AR和VR智能眼镜市场将从2024年的184.3亿美元大幅扩张。\n\n国内方面，AI眼镜和AI耳机产品百花齐放。从AI翻译眼镜到健康监测戒指，从智能耳机到AI Pin类设备，可穿戴AI终端正成为消费电子行业最大的增长引擎。原子埃尔创始人潘志东表示："2025年才能被称为AI硬件的元年，DeepSeek等开源大模型的成熟，让边缘AI算力成本大幅降低，传感器技术的突破让微型化成为可能。"'
+    title: { zh: 'OpenAI发布下一代大模型，AI圈信息密度创历史新高', en: 'OpenAI Releases Next-Gen Model, AI Industry Information Density Hits Record High' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-04-15',
+    summary: { zh: 'OpenAI于4月14日正式发布下一代大模型，引发行业震动。2026年AI工程师平均薪资超50万元，人才竞争白热化。', en: 'OpenAI officially released its next-generation model on April 14, sending shockwaves through the industry. Average AI engineer salaries exceed 500K RMB in 2026.' },
+    content: {
+      zh: '2026年4月14日，OpenAI正式发布下一代大模型，引发行业广泛关注。这是继GPT-5系列之后的又一次重大更新。\n\n**行业影响：**\n\n- **模型能力跃升**：新模型在推理速度、多模态理解和长上下文处理方面均有显著提升。\n\n- **人才市场火热**：据行业报告显示，2026年中国AI工程师平均薪资已超过50万元，顶尖人才年薪可达百万以上。\n\n- **应用场景扩展**：从编程辅助到科学研究，AI大模型的应用场景持续拓宽。\n\n- **竞争格局变化**：OpenAI、Google、Anthropic三足鼎立的格局进一步巩固，国内厂商如DeepSeek、智谱AI等也在快速追赶。\n\n业内人士表示，2026年AI圈的信息密度高得"有点离谱"，几乎每周都有重大发布，标志着AI产业进入高速发展期。',
+      en: 'On April 14, 2026, OpenAI officially released its next-generation model, drawing widespread industry attention. This marks another major update following the GPT-5 series.\n\n**Industry Impact:**\n\n- **Capability Leap**: Significant improvements in reasoning speed, multimodal understanding, and long-context processing.\n\n- **Talent Market**: Industry reports show average AI engineer salaries in China exceeding 500K RMB in 2026, with top talent reaching over 1 million.\n\n- **Expanding Applications**: From coding assistance to scientific research, AI model applications continue to broaden.\n\n- **Competitive Landscape**: The triopoly of OpenAI, Google, and Anthropic is further consolidated, while domestic players like DeepSeek and Zhipu AI are rapidly catching up.\n\nIndustry insiders note that AI information density in 2026 is "almost absurdly high," with major releases nearly every week, signaling the industry has entered a period of rapid development.'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
   },
   {
     id: 3,
-    title: 'DeepSeek V4三箭齐发，首发适配华为AI芯片',
-    category: '技术前沿',
-    date: '2026-03-15',
-    summary: 'DeepSeek在毫无预告的情况下悄然更新，V4版本首发适配华为AI芯片，国产AI芯片迎来黄金时代。',
-    content: '2026年4月8日，国内AI大模型领域迎来一场静默革命。DeepSeek在毫无预告的情况下，悄然更新了网页端界面，新增"快速模式"与"专家模式"双选项布局，标志着V4版本的全面升级。\n\nDeepSeek V4的四大能力突破值得关注：\n\n1. **国产芯片适配**：首发适配华为昇腾AI芯片，打破国外GPU垄断，为国产AI基础设施自主可控迈出关键一步。\n\n2. **推理能力跃升**：在数学推理、代码生成、多模态理解等核心能力上大幅提升，部分指标已逼近或超越GPT-5.4。\n\n3. **上下文窗口扩展**：支持更长的上下文处理，满足企业级长文档处理和复杂任务编排需求。\n\n4. **Agent生态完善**：内置AI Agent框架，支持工具调用、多步推理和自主任务执行。\n\n业内人士评价，DeepSeek V4与华为芯片的深度适配，标志着国产AI大模型与国产AI芯片的"双向奔赴"，将加速推动中国AI产业的自主化进程。'
+    title: { zh: '深圳锁定AI芯片为产业突破口，力争AI终端产值破万亿', en: 'Shenzhen Targets AI Chips as Industrial Breakthrough, Aiming for 1 Trillion RMB AI Terminal Output' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-04-12',
+    summary: { zh: '深圳半导体产值已破3000亿元，市政府将AI芯片锁定为产业突破口，力争AI终端产品产量突破1.5亿台。', en: 'Shenzhen\'s semiconductor output exceeds 300 billion RMB. The city targets AI chips as a breakthrough, aiming for 150 million AI terminal devices.' },
+    content: {
+      zh: '深圳在半导体产业取得重大突破，产值已突破3000亿元。市政府正式将AI芯片锁定为产业突破口，发布雄心勃勃的发展规划。\n\n**核心目标：**\n\n- **产值目标**：力争AI相关产业总产值突破1万亿元\n- **产量目标**：AI终端产品产量突破1.5亿台\n- **产品规划**：在手机、计算机、大模型一体机、可穿戴设备等领域推出50款以上爆款AI终端产品\n\n**产业布局：**\n\n深圳正加速构建从芯片设计到终端应用的完整AI产业链。博通集成等本地芯片企业已推出超低功耗边缘AI芯片，面向智能家居、消费电子及AI原生设备领域。\n\n这一规划将为AI穿戴设备、智能工牌等终端产品创造巨大的市场机遇，也为豆姜科技等AI硬件企业提供了有利的发展环境。',
+      en: 'Shenzhen has achieved a major breakthrough in the semiconductor industry, with output exceeding 300 billion RMB. The city government has officially targeted AI chips as an industrial breakthrough, releasing ambitious development plans.\n\n**Core Targets:**\n\n- **Output Goal**: AI-related total industrial output exceeding 1 trillion RMB\n- **Production Goal**: AI terminal device production exceeding 150 million units\n- **Product Planning**: Launching 50+ hit AI terminal products in phones, computers, LLM all-in-one machines, and wearable devices\n\n**Industry Layout:**\n\nShenzhen is accelerating the construction of a complete AI industry chain from chip design to terminal applications. Local chip companies like RiseLink Technologies have launched ultra-low-power edge AI chips for smart home, consumer electronics, and AI-native devices.\n\nThis plan creates enormous market opportunities for AI wearable devices, smart badges, and other terminal products.'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
   },
   {
     id: 4,
-    title: 'CES 2026：AI原生硬件成为主角，重新定义人机交互',
-    category: '行业活动',
-    date: '2026-03-01',
-    summary: '2026年CES展会上，AI原生硬件产品占据C位，从智能眼镜到AI Pin，人机交互方式正在被重新定义。',
-    content: '在2026年国际消费电子展（CES）上，AI原生硬件（AI-Native Hardware）首次成为展会主角，标志着消费电子产业正从"互联网+"时代全面迈向"AI+"时代。\n\n展会亮点包括：\n\n- **AI Pin类设备**：多款AI可穿戴设备亮相，集成了语音助手、实时翻译、健康监测等功能，形态更加小巧精致。\n\n- **智能眼镜**：Meta、雷鸟创新、XREAL等品牌展示了新一代AI眼镜产品，支持实时AI视觉识别和语音交互。\n\n- **边缘AI芯片**：黑芝麻智能等中国芯片厂商展示了面向终端设备的AI推理芯片，算力密度大幅提升。\n\n- **AI Agent硬件**：多款专为AI Agent设计的硬件终端亮相，支持本地大模型推理，无需依赖云端。\n\n黑芝麻智能CMO在展会上表示："AI原生硬件的核心不在于硬件本身，而在于它能为用户创造什么样的体验。真正的AI硬件应该是无感的、自然的、懂你的。"'
+    title: { zh: 'GitHub AI项目爆发：开源大模型教程星标超3万', en: 'GitHub AI Projects Explode: Open-Source LLM Tutorial Surpasses 30K Stars' },
+    category: { zh: '技术前沿', en: 'Tech Frontier' },
+    date: '2026-04-10',
+    summary: { zh: 'GitHub上AI相关项目持续爆发，《动手学大模型》教程项目星标超3.1万，AI屏幕助手omi单日新增944星标。', en: 'AI projects continue to explode on GitHub. The "Hands-on LLM" tutorial surpassed 31K stars, while AI screen assistant omi gained 944 stars in a single day.' },
+    content: {
+      zh: '2026年4月，GitHub上AI相关开源项目持续爆发，开发者社区热情高涨。\n\n**热门项目：**\n\n- **dive-into-llms**：《动手学大模型》系列编程实践教程，累计获得31,666颗星标，单日新增1,713颗，成为最受欢迎的大模型学习资源之一。\n\n- **omi**：AI屏幕助手项目，单日新增944颗星标，展示了AI在桌面端应用的巨大潜力。\n\n**趋势分析：**\n\n开源AI项目的爆发反映了几个重要趋势：\n1. 大模型技术正在快速民主化，越来越多的开发者能够参与AI应用开发\n2. AI Agent和AI工具类项目成为新的增长点\n3. 中文AI开源社区的活跃度持续提升\n\n对于AI硬件企业而言，开源生态的繁荣意味着更多的开发者和应用场景，有利于构建完整的产品生态。',
+      en: 'In April 2026, AI-related open-source projects continue to explode on GitHub, with the developer community showing tremendous enthusiasm.\n\n**Trending Projects:**\n\n- **dive-into-llms**: "Hands-on LLM" programming practice tutorial series, accumulating 31,666 stars with 1,713 new stars in a single day, becoming one of the most popular LLM learning resources.\n\n- **omi**: AI screen assistant project, gaining 944 stars in a single day, demonstrating the enormous potential of AI in desktop applications.\n\n**Trend Analysis:**\n\nThe explosion of open-source AI projects reflects several important trends:\n1. LLM technology is rapidly democratizing, enabling more developers to participate in AI application development\n2. AI Agent and AI tool projects have become new growth drivers\n3. The Chinese AI open-source community continues to gain momentum\n\nFor AI hardware companies, the prosperity of the open-source ecosystem means more developers and application scenarios, facilitating the construction of complete product ecosystems.'
+    },
+    source: { zh: '来源：GitHub Trending', en: 'Source: GitHub Trending' }
   },
   {
     id: 5,
-    title: '边缘AI芯片赛道升温，厚莫科技发布大模型边缘计算芯片',
-    category: '技术前沿',
-    date: '2026-02-20',
-    summary: '厚莫科技在世界人工智能大会上发布边缘AI芯片，支持本地运行大语言模型，推动端侧AI推理普及。',
-    content: '在世界人工智能大会（WAIC）上，厚莫科技（Houmo AI）发布了面向大模型的边缘AI芯片——厚莫漫界M1，标志着边缘计算与大模型的深度融合进入新阶段。\n\n该芯片的核心特性包括：\n\n- **端侧大模型推理**：支持在终端设备上本地运行数十亿参数的语言模型，无需依赖云端，响应延迟降至毫秒级。\n\n- **低功耗设计**：采用先进制程工艺，功耗较上一代降低60%，适合可穿戴设备和移动终端。\n\n- **多模态支持**：同时支持文本、语音、图像等多模态AI推理，一颗芯片覆盖多种应用场景。\n\n厚莫科技表示，随着DeepSeek等开源大模型的成熟，边缘AI算力需求急剧增长。该芯片将从智能驾驶领域扩展到AI穿戴设备、智能家居、工业检测等更广泛的应用场景。'
+    title: { zh: '博通集成发布超低功耗边缘AI芯片，面向AI原生设备', en: 'RiseLink Technologies Launches Ultra-Low-Power Edge AI Chip for AI-Native Devices' },
+    category: { zh: '技术前沿', en: 'Tech Frontier' },
+    date: '2026-04-08',
+    summary: { zh: '博通集成携最新一代超低功耗Wi-Fi SoC与边缘AI芯片平台亮相，全面展示智能家居、消费电子及AI原生设备领域的技术实力。', en: 'RiseLink Technologies showcased its latest ultra-low-power Wi-Fi SoC and edge AI chip platform, demonstrating capabilities in smart home, consumer electronics, and AI-native devices.' },
+    content: {
+      zh: '博通集成（RiseLink Technologies）携其最新一代超低功耗Wi-Fi SoC与Edge AI芯片平台重磅亮相，全面展示其在智能家居、消费电子及AI原生设备领域的技术实力。\n\n**产品亮点：**\n\n- **超低功耗设计**：采用先进制程工艺，功耗较上一代降低50%以上，适合电池供电的AI终端设备。\n\n- **Wi-Fi + AI一体化**：将无线连接与AI推理能力集成在同一芯片上，大幅降低系统成本和设计复杂度。\n\n- **边缘AI推理**：支持在终端设备上本地运行轻量级AI模型，无需依赖云端，响应延迟降至毫秒级。\n\n**应用场景：**\n\n该芯片平台可广泛应用于智能穿戴设备、AI拾音工牌、智能音箱、家居传感器等AI原生终端产品。对于豆姜科技等AI穿戴硬件企业，此类芯片的推出将显著降低产品功耗和成本，加速产品迭代。',
+      en: 'RiseLink Technologies showcased its latest generation of ultra-low-power Wi-Fi SoC and Edge AI chip platform, comprehensively demonstrating its technical capabilities in smart home, consumer electronics, and AI-native devices.\n\n**Product Highlights:**\n\n- **Ultra-Low Power**: Advanced manufacturing process reduces power consumption by over 50% compared to the previous generation, suitable for battery-powered AI terminals.\n\n- **Wi-Fi + AI Integration**: Combining wireless connectivity and AI inference on a single chip, significantly reducing system cost and design complexity.\n\n- **Edge AI Inference**: Supports running lightweight AI models locally on terminal devices without cloud dependency, reducing response latency to milliseconds.\n\n**Application Scenarios:**\n\nThe chip platform can be widely applied in AI wearable devices, AI voice badges, smart speakers, home sensors, and other AI-native terminal products. For AI wearable hardware companies, such chips will significantly reduce product power consumption and cost.'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
   },
   {
     id: 6,
-    title: 'AI编程与Agent成为2026年最大投资风口',
-    category: '行业动态',
-    date: '2026-02-05',
-    summary: '2026年AI投资展望报告指出，AI编程助手和AI Agent将成为最具投资价值的两大方向。',
-    content: '多家权威投资机构发布的2026年人工智能投资展望报告显示，AI编程助手和AI Agent（智能体）将成为今年最具投资价值的两大方向。\n\n报告核心观点：\n\n1. **Scaling Law持续演化**：大模型参数规模继续增长，但增长方式从单纯扩大规模转向更高效的架构创新。\n\n2. **推理侧需求放量**：随着AI应用从训练转向推理，推理算力需求将出现爆发式增长，边缘推理芯片和推理优化技术成为投资热点。\n\n3. **AI编程爆发**：AI编程助手（如Cursor、GitHub Copilot等）渗透率快速提升，预计2026年将有超过50%的开发者使用AI辅助编程。\n\n4. **Agent生态成型**：AI Agent从概念验证走向生产部署，客服、销售、数据分析等场景的Agent应用开始产生实际商业价值。\n\n5. **AI硬件元年**：AI穿戴设备、AI Pin、智能眼镜等AI原生硬件品类快速成熟，消费级AI硬件市场迎来爆发期。\n\n投资者普遍认为，2026年将是AI从"技术验证"走向"商业落地"的关键转折年。'
+    title: { zh: '全球AI大模型格局：OpenAI、Google、Anthropic三足鼎立', en: 'Global LLM Landscape: OpenAI, Google, Anthropic Form Triopoly' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-04-05',
+    summary: { zh: '截至2026年4月，海外AI大模型市场形成三足鼎立格局，国内厂商DeepSeek、智谱AI等快速追赶。', en: 'As of April 2026, the overseas LLM market has formed a triopoly, while domestic players like DeepSeek and Zhipu AI are rapidly catching up.' },
+    content: {
+      zh: '截至2026年4月，全球AI大模型市场格局已趋于清晰。\n\n**海外三强：**\n\n1. **OpenAI（GPT系列）**：全能型选手，GPT系列一直是大模型的标杆，持续引领行业发展方向。\n\n2. **Google（Gemini系列）**：依托强大的搜索和云计算生态，Gemini在多模态整合方面具有独特优势。\n\n3. **Anthropic（Claude系列）**：以安全和对齐著称，Claude Opus 4.7的发布进一步巩固了其市场地位。\n\n**国内力量：**\n\n- **DeepSeek**：开源路线的代表，V4版本首发适配华为昇腾芯片，推动国产AI基础设施自主可控。\n- **智谱AI**：GLM系列模型在中文理解和生成方面表现优异。\n- **字节跳动**：豆包大模型日均调用量持续增长，在应用层面快速扩张。\n- **MiniMax、月之暗面**等新锐厂商也在各自赛道上发力。\n\n**趋势展望：**\n\n业内人士普遍认为，2026年大模型竞争将从"参数竞赛"转向"应用效果"和"商业化落地"的比拼，AI Agent将成为下一个关键战场。',
+      en: 'As of April 2026, the global LLM market landscape has become clear.\n\n**Overseas Triopoly:**\n\n1. **OpenAI (GPT Series)**: The all-rounder, GPT series has always been the benchmark for LLMs, continuously leading industry development.\n\n2. **Google (Gemini Series)**: Leveraging its powerful search and cloud ecosystem, Gemini has unique advantages in multimodal integration.\n\n3. **Anthropic (Claude Series)**: Known for safety and alignment, Claude Opus 4.7\'s release further consolidated its market position.\n\n**Domestic Forces:**\n\n- **DeepSeek**: Representative of the open-source approach, V4 first adapted to Huawei Ascend chips, promoting domestic AI infrastructure autonomy.\n- **Zhipu AI**: GLM series excels in Chinese understanding and generation.\n- **ByteDance**: Doubao model\'s daily call volume continues to grow, rapidly expanding in application.\n- **MiniMax, Moonshot AI** and other emerging players are also making efforts in their respective tracks.\n\n**Outlook:**\n\nIndustry insiders widely believe that 2026 LLM competition will shift from "parameter race" to "application effectiveness" and "commercial deployment," with AI Agents becoming the next key battleground.'
+    },
+    source: { zh: '来源：今日头条、网易', en: 'Source: Toutiao, NetEase' }
   },
   {
     id: 7,
-    title: '超千件AI终端产品亮相全球人工智能终端展',
-    category: '行业活动',
-    date: '2026-01-18',
-    summary: '2025全球人工智能终端展在深圳举办，超千件AI终端产品集中亮相，涵盖穿戴设备、机器人、智能家居等品类。',
-    content: '2025全球人工智能终端展暨第六届深圳国际人工智能展览会（GAIE）在深圳隆重举办，超千件AI终端产品集中亮相，创历届之最。\n\n展会亮点：\n\n- **AI穿戴设备专区**：智能眼镜、AI耳机、智能手表、健康手环等最新产品集中展示，多家企业发布了搭载大模型的穿戴式AI终端。\n\n- **具身智能机器人**：人形机器人、服务机器人、工业机器人等品类丰富，多款产品已具备多模态交互和自主决策能力。\n\n- **智能家居生态**：全屋智能解决方案成为焦点，AI大模型赋能的智能家居系统可实现自然语言控制和场景自适应。\n\n- **开发者生态**：多家企业展示了AI开发平台和工具链，降低AI应用开发门槛。\n\n展会组委会表示，AI终端产业正从单品智能向全场景智能演进，2026年将是AI终端产品大规模普及的关键一年。'
+    title: { zh: 'AI工程师薪资超50万，2026年人才争夺战白热化', en: 'AI Engineer Salaries Exceed 500K RMB — 2026 Talent War Intensifies' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-04-02',
+    summary: { zh: '2026年中国AI工程师平均薪资超50万元，顶尖人才年薪百万以上。大模型、AI Agent、具身智能成为最热门方向。', en: 'Average AI engineer salaries in China exceed 500K RMB in 2026, with top talent reaching over 1 million. LLMs, AI Agents, and embodied intelligence are the hottest directions.' },
+    content: {
+      zh: '2026年AI人才市场持续升温，薪资水平创下新高。\n\n**薪资数据：**\n\n- **平均薪资**：中国AI工程师平均年薪已超过50万元\n- **顶尖人才**：大模型核心研发人员年薪可达100-200万元\n- **涨幅趋势**：相比2025年，AI岗位薪资平均上涨30%以上\n\n**热门方向：**\n\n1. **大模型研发**：算法工程师、模型训练专家需求旺盛\n2. **AI Agent开发**：智能体架构师成为新兴高薪岗位\n3. **具身智能**：机器人+AI的交叉领域人才稀缺\n4. **AI硬件**：边缘AI芯片、AI穿戴设备工程师需求增长\n\n**行业建议：**\n\n对于AI硬件企业而言，吸引和留住人才是关键挑战。建议通过有竞争力的薪酬、股权激励和技术成长空间来构建人才优势。',
+      en: 'The AI talent market continues to heat up in 2026, with salary levels reaching new highs.\n\n**Salary Data:**\n\n- **Average Salary**: Chinese AI engineers\' average annual salary exceeds 500K RMB\n- **Top Talent**: Core LLM R&D personnel can earn 1-2 million RMB annually\n- **Growth Trend**: AI position salaries increased over 30% compared to 2025\n\n**Hot Directions:**\n\n1. **LLM R&D**: Strong demand for algorithm engineers and model training specialists\n2. **AI Agent Development**: Agent architects have become a new high-paying role\n3. **Embodied Intelligence**: Talent in the robotics + AI intersection is scarce\n4. **AI Hardware**: Growing demand for edge AI chip and AI wearable device engineers\n\n**Industry Advice:**\n\nFor AI hardware companies, attracting and retaining talent is a key challenge. Competitive compensation, equity incentives, and technical growth opportunities are recommended.'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
   },
   {
     id: 8,
-    title: '豆姜科技发布AI穿戴式硬件产品矩阵',
-    category: '产品动态',
-    date: '2026-01-05',
-    summary: '豆姜科技正式发布AI记忆助手、AI拾音工牌、AI穿戴设备、AI标识、AI定位追踪及OpenClaw应用平台六大产品线。',
-    content: '豆姜科技正式发布覆盖AI硬件应用全场景的产品矩阵，包含六大产品线：\n\n1. **Memorion AI记忆助手**：24小时AI可穿戴记忆伙伴，全天候录音、AI智能整理、自然语言语义检索，基于ESP32-S3开源硬件平台。\n\n2. **DJ-VoiceBadge AI拾音工牌**：360°降噪拾音，实时语音转文字，AI自动生成会议纪要，8小时续航，仅28g轻便佩戴。\n\n3. **DJ-WearOne AI穿戴式设备**：健康监测+AI语音助手+语音交互三合一，柔性OLED屏，IP68防水，7天续航，支持eSIM独立通话。\n\n4. **DJ-AiTag AI智能标识**：99.7%人脸识别准确率，AI语音交互，行为分析与预警，支持10万人脸库。\n\n5. **DJ-Locator AI定位追踪**：GPS/北斗+UWB室内外厘米级定位，AI轨迹分析预警，电子围栏，6个月超长待机。\n\n6. **OpenClaw AI应用平台**：开源AI Agent平台，可视化工作流编排，多LLM接入，企业知识库，支持私有化部署。\n\n公司表示，将致力于通过创新的AI硬件技术，为全球用户提供智能化的产品和解决方案，助力企业AI数字化转型。'
+    title: { zh: '豆姜科技发布AI穿戴式硬件产品矩阵', en: 'DouJiang Technology Launches AI Wearable Hardware Product Matrix' },
+    category: { zh: '产品动态', en: 'Product Updates' },
+    date: '2026-03-28',
+    summary: { zh: '豆姜科技正式发布覆盖AI硬件应用全场景的产品矩阵，包含六大产品线。', en: 'DouJiang Technology officially launched its product matrix covering the full spectrum of AI hardware applications.' },
+    content: {
+      zh: '豆姜科技正式发布覆盖AI硬件应用全场景的产品矩阵，包含六大产品线：\n\n1. **Memorion AI记忆助手**：24小时AI可穿戴记忆伙伴，全天候录音、AI智能整理、自然语言语义检索。\n\n2. **DJ-VoiceBadge AI拾音工牌**：360°降噪拾音，实时语音转文字，AI自动生成会议纪要，8小时续航。\n\n3. **DJ-WearOne AI穿戴式设备**：健康监测+AI语音助手+语音交互三合一，IP68防水，7天续航。\n\n4. **Hermes Agent应用平台**：企业级AI智能体平台，可视化工作流编排，多模态AI能力集成，私有化部署。\n\n5. **DJ-Locator AI定位追踪**：GPS/北斗+UWB室内外厘米级定位，AI轨迹分析预警。\n\n6. **OpenClaw AI应用平台**：开源AI Agent平台，可视化工作流编排，多LLM接入。\n\n公司表示，将致力于通过创新的AI硬件技术，为全球用户提供智能化的产品和解决方案。',
+      en: 'DouJiang Technology officially launched its product matrix covering the full spectrum of AI hardware applications:\n\n1. **Memorion AI Memory Assistant**: 24/7 AI wearable memory companion with all-day recording and AI-powered organization.\n\n2. **DJ-VoiceBadge AI Voice Badge**: 360° noise-canceling pickup, real-time speech-to-text, AI auto-generated meeting minutes.\n\n3. **DJ-WearOne AI Wearable Device**: Health monitoring + AI voice assistant + voice interaction, IP68 waterproof, 7-day battery.\n\n4. **Hermes Agent Platform**: Enterprise-grade AI Agent platform with visual workflow orchestration, multimodal AI capabilities, and private deployment.\n\n5. **DJ-Locator AI Tracking**: GPS/BeiDou + UWB indoor/outdoor centimeter-level positioning.\n\n6. **OpenClaw AI Application Platform**: Open-source AI Agent platform with visual workflow orchestration.'
+    },
+    source: { zh: '来源：豆姜科技官方', en: 'Source: DouJiang Technology Official' }
   },
   {
     id: 9,
-    title: '全球AI穿戴设备市场规模预计2026年达746亿美元',
-    category: '行业动态',
-    date: '2025-12-20',
-    summary: '研究报告显示，全球AI穿戴设备市场快速增长，预计2026年市场规模将达到746亿美元。',
-    content: '据多家市场研究机构发布的报告显示，全球AI穿戴设备市场正经历前所未有的快速增长。\n\n核心数据：\n\n- **全球市场规模**：预计2026年将达到746亿美元，年复合增长率超过25%。\n\n- **智能眼镜市场**：2024年市场规模为19.3亿美元，预计到2030年将以27.3%的复合年增长率增长。\n\n- **AR/VR市场**：预计从2024年的184.3亿美元持续扩张，AI赋能成为核心增长驱动力。\n\n- **中国市场**：作为全球最大的消费电子市场，中国在AI穿戴设备领域的增速领先全球，本土品牌快速崛起。\n\n报告指出，AI穿戴设备市场的快速增长主要得益于三大因素：一是大模型技术的成熟使得端侧AI推理成为可能；二是传感器技术的突破让设备更加小型化和低功耗；三是用户对AI辅助生活的接受度和需求持续提升。\n\n业内人士预测，2026年将成为AI穿戴设备的"爆发元年"，品类将从智能手表、耳机扩展到AI眼镜、AI Pin、智能工牌等更多形态。'
+    title: { zh: '免责声明：资讯内容来源于网络，侵权联系删除', en: 'Disclaimer: News content is sourced from the internet. Contact us for removal if any infringement.' },
+    category: { zh: '法律声明', en: 'Legal Notice' },
+    date: '2026-04-20',
+    summary: { zh: '本站资讯内容均来源于网络公开信息，仅作行业资讯分享之用，不构成任何投资建议。如有侵权，请联系我们删除。', en: 'News content on this site is sourced from publicly available internet information, shared for industry reference only, and does not constitute investment advice. Contact us for removal if any infringement.' },
+    content: {
+      zh: '**免责声明**\n\n本站资讯中心所发布的所有文章内容均来源于网络公开信息，仅供行业资讯分享和参考之用，不构成任何投资建议或商业决策依据。\n\n**引用来源包括但不限于：**\n- 今日头条 (toutiao.com)\n- 搜狐科技 (sohu.com)\n- 网易 (163.com)\n- GitHub Trending\n- 各公司官方发布\n\n**版权声明：**\n\n1. 所有引用内容的版权归原作者和出版方所有。\n2. 本站转载内容仅供资讯分享，不用于任何商业目的。\n3. 如有内容侵犯了您的合法权益，请及时与我们联系，我们将在第一时间删除相关内容。\n\n**联系方式：**\n- 邮箱：doujiangkeji@126.com\n- 电话：13247819985',
+      en: '**Disclaimer**\n\nAll news articles published on this site are sourced from publicly available internet information, shared for industry reference only, and do not constitute investment advice or commercial decision-making basis.\n\n**Sources include but are not limited to:**\n- Toutiao (toutiao.com)\n- Sohu Tech (sohu.com)\n- NetEase (163.com)\n- GitHub Trending\n- Official company releases\n\n**Copyright Notice:**\n\n1. All referenced content rights belong to the original authors and publishers.\n2. Reproduced content is shared for news purposes only, not for commercial use.\n3. If any content infringes on your legitimate rights, please contact us and we will remove it promptly.\n\n**Contact:**\n- Email: doujiangkeji@126.com\n- Phone: 13247819985'
+    },
+    source: { zh: '豆姜科技', en: 'DouJiang Technology' }
   }
 ];
 

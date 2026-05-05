@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ScrollAnimation from '../components/ScrollAnimation';
+import { useLanguage, t } from '../i18n';
 import './Contact.css';
 
 function Contact() {
+  const { lang } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,8 +35,8 @@ function Contact() {
           <div className="contact-hero__glow contact-hero__glow--2"></div>
         </div>
         <div className="container contact-hero__content">
-          <h1 className="contact-hero__title">联系我们</h1>
-          <p className="contact-hero__subtitle">我们期待与您建立联系，共同探讨合作机会</p>
+          <h1 className="contact-hero__title">{t(lang, 'contact.title')}</h1>
+          <p className="contact-hero__subtitle">{t(lang, 'contact.subtitle')}</p>
         </div>
       </section>
 
@@ -44,62 +46,62 @@ function Contact() {
             {/* Contact Form */}
             <ScrollAnimation animation="fadeInLeft">
               <div className="contact-form-wrapper">
-                <h2 className="contact-form__title">发送留言</h2>
-                <p className="contact-form__desc">填写以下表单，我们将在 24 小时内回复您</p>
+                <h2 className="contact-form__title">{t(lang, 'contact.formTitle')}</h2>
+                <p className="contact-form__desc">{t(lang, 'contact.formDesc')}</p>
                 {submitted && (
                   <div className="contact-form__success">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
                       <polyline points="22 4 12 14.01 9 11.01" />
                     </svg>
-                    感谢您的留言！我们已收到您的信息，将尽快与您联系。
+                    {t(lang, 'contact.submitSuccess')}
                   </div>
                 )}
                 <form className="contact-form" onSubmit={handleSubmit}>
                   <div className="contact-form__row">
                     <div className="contact-form__group">
-                      <label className="contact-form__label">姓名 *</label>
+                      <label className="contact-form__label">{t(lang, 'contact.name')} *</label>
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="请输入您的姓名"
+                        placeholder={t(lang, 'contact.namePlaceholder')}
                         className="contact-form__input"
                         required
                       />
                     </div>
                     <div className="contact-form__group">
-                      <label className="contact-form__label">邮箱 *</label>
+                      <label className="contact-form__label">{t(lang, 'contact.email')} *</label>
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="请输入您的邮箱"
+                        placeholder={t(lang, 'contact.emailPlaceholder')}
                         className="contact-form__input"
                         required
                       />
                     </div>
                   </div>
                   <div className="contact-form__group">
-                    <label className="contact-form__label">电话</label>
+                    <label className="contact-form__label">{t(lang, 'contact.phone')}</label>
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="请输入您的联系电话"
+                      placeholder={t(lang, 'contact.phonePlaceholder')}
                       className="contact-form__input"
                     />
                   </div>
                   <div className="contact-form__group">
-                    <label className="contact-form__label">留言 *</label>
+                    <label className="contact-form__label">{t(lang, 'contact.message')} *</label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="请输入您的留言内容..."
+                      placeholder={t(lang, 'contact.messagePlaceholder')}
                       rows="6"
                       className="contact-form__textarea"
                       required
@@ -110,7 +112,7 @@ function Contact() {
                       <line x1="22" y1="2" x2="11" y2="13" />
                       <polygon points="22 2 15 22 11 13 2 9 22 2" />
                     </svg>
-                    发送留言
+                    {t(lang, 'contact.submit')}
                   </button>
                 </form>
               </div>
@@ -119,7 +121,7 @@ function Contact() {
             {/* Contact Info */}
             <ScrollAnimation animation="fadeInRight">
               <div className="contact-info">
-                <h2 className="contact-info__title">公司信息</h2>
+                <h2 className="contact-info__title">{t(lang, 'contact.infoTitle')}</h2>
                 <div className="contact-info__cards">
                   <div className="contact-info-card">
                     <div className="contact-info-card__icon">
@@ -129,8 +131,8 @@ function Contact() {
                       </svg>
                     </div>
                     <div>
-                      <h4 className="contact-info-card__title">公司地址</h4>
-                      <p className="contact-info-card__text">杭州市36C创业中心</p>
+                      <h4 className="contact-info-card__title">{t(lang, 'contact.address')}</h4>
+                      <p className="contact-info-card__text">{t(lang, 'contact.addressText')}</p>
                     </div>
                   </div>
                   <div className="contact-info-card">
@@ -140,8 +142,8 @@ function Contact() {
                       </svg>
                     </div>
                     <div>
-                      <h4 className="contact-info-card__title">联系电话</h4>
-                      <p className="contact-info-card__text">17688885281（微信同号）</p>
+                      <h4 className="contact-info-card__title">{t(lang, 'contact.phoneTitle')}</h4>
+                      <p className="contact-info-card__text">{t(lang, 'contact.phoneText')}</p>
                     </div>
                   </div>
                   <div className="contact-info-card">
@@ -152,8 +154,8 @@ function Contact() {
                       </svg>
                     </div>
                     <div>
-                      <h4 className="contact-info-card__title">电子邮箱</h4>
-                      <p className="contact-info-card__text">doujiangkeji@126.com</p>
+                      <h4 className="contact-info-card__title">{t(lang, 'contact.emailTitle')}</h4>
+                      <p className="contact-info-card__text">{t(lang, 'contact.emailText')}</p>
                     </div>
                   </div>
                   <div className="contact-info-card">
@@ -164,8 +166,8 @@ function Contact() {
                       </svg>
                     </div>
                     <div>
-                      <h4 className="contact-info-card__title">工作时间</h4>
-                      <p className="contact-info-card__text">周一至周五 9:00 - 18:00<br />周末及法定节假日休息</p>
+                      <h4 className="contact-info-card__title">{t(lang, 'contact.hours')}</h4>
+                      <p className="contact-info-card__text">{t(lang, 'contact.hoursText')}</p>
                     </div>
                   </div>
                   <Link to="/mail" className="contact-info-card contact-info-card--mail">
@@ -176,8 +178,8 @@ function Contact() {
                       </svg>
                     </div>
                     <div>
-                      <h4 className="contact-info-card__title">企业邮箱</h4>
-                      <p className="contact-info-card__text">登录企业邮箱，收发邮件<br />高效沟通，协作无间 →</p>
+                      <h4 className="contact-info-card__title">{t(lang, 'contact.enterpriseEmail')}</h4>
+                      <p className="contact-info-card__text">{t(lang, 'contact.enterpriseEmailDesc')}</p>
                     </div>
                   </Link>
                 </div>
@@ -189,7 +191,7 @@ function Contact() {
           <ScrollAnimation>
             <div className="contact-map">
               <iframe
-                title="腾讯地图"
+                title={t(lang, 'contact.mapTitle')}
                 src="https://apis.map.qq.com/tools/routeplan/?type=drive&to=杭州市36C创业中心&tocoordinate=30.279084,120.15507&referer=doujiang"
                 width="100%"
                 height="400"

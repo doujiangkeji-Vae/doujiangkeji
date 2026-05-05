@@ -1,8 +1,11 @@
 import ScrollAnimation from '../components/ScrollAnimation';
+import { useLanguage, t } from '../i18n';
 import { teamMembers, milestones } from '../data/mockData';
 import './About.css';
 
 function About() {
+  const { lang } = useLanguage();
+
   const cultureItems = [
     {
       icon: (
@@ -10,8 +13,8 @@ function About() {
           <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
         </svg>
       ),
-      title: '创新驱动',
-      desc: '持续投入研发，拥抱前沿技术，用创新解决实际问题。'
+      title: t(lang, 'about.culture1Title'),
+      desc: t(lang, 'about.culture1Desc')
     },
     {
       icon: (
@@ -21,8 +24,8 @@ function About() {
           <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
         </svg>
       ),
-      title: '协作共赢',
-      desc: '开放合作，与客户、伙伴共同成长，构建共赢生态。'
+      title: t(lang, 'about.culture2Title'),
+      desc: t(lang, 'about.culture2Desc')
     },
     {
       icon: (
@@ -31,8 +34,8 @@ function About() {
           <path d="M12 6v6l4 2" />
         </svg>
       ),
-      title: '追求卓越',
-      desc: '对品质极致追求，每一个产品都经过严格测试和打磨。'
+      title: t(lang, 'about.culture3Title'),
+      desc: t(lang, 'about.culture3Desc')
     },
     {
       icon: (
@@ -40,8 +43,8 @@ function About() {
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
         </svg>
       ),
-      title: '社会责任',
-      desc: '科技向善，用技术力量回馈社会，推动可持续发展。'
+      title: t(lang, 'about.culture4Title'),
+      desc: t(lang, 'about.culture4Desc')
     }
   ];
 
@@ -54,8 +57,8 @@ function About() {
           <div className="about-hero__glow about-hero__glow--2"></div>
         </div>
         <div className="container about-hero__content">
-          <h1 className="about-hero__title">关于豆姜科技</h1>
-          <p className="about-hero__subtitle">智造未来，连接万物 -- 我们的故事</p>
+          <h1 className="about-hero__title">{t(lang, 'about.heroTitle')}</h1>
+          <p className="about-hero__subtitle">{t(lang, 'about.heroSubtitle')}</p>
         </div>
       </section>
 
@@ -66,34 +69,30 @@ function About() {
             <ScrollAnimation animation="fadeInLeft">
               <div className="about-intro__text">
                 <h2 className="about-intro__title">
-                  用技术连接
-                  <span className="text-gradient">物理世界与数字世界</span>
+                  {t(lang, 'about.introTitle')}
+                  <span className="text-gradient">{t(lang, 'about.introTitleAccent')}</span>
                 </h2>
                 <p className="about-intro__desc">
-                  豆姜科技成立于 2018 年，是一家专注于物联网核心技术研发的高新技术企业。
-                  公司总部位于深圳，在北京、上海、杭州设有研发中心。
+                  {t(lang, 'about.introDesc1')}
                 </p>
                 <p className="about-intro__desc">
-                  我们致力于通过创新的硬件产品和软件平台，为企业级客户提供从设备接入、
-                  数据采集到智能分析的端到端物联网解决方案。产品覆盖智能网关、环境传感器、
-                  智能安防、边缘计算等多个领域，服务客户超过 2000 家，产品远销 65 个国家和地区。
+                  {t(lang, 'about.introDesc2')}
                 </p>
                 <p className="about-intro__desc">
-                  秉承"智造未来，连接万物"的使命，豆姜科技将持续深耕物联网核心技术，
-                  推动行业数字化转型，让智能技术惠及每一个人。
+                  {t(lang, 'about.introDesc3')}
                 </p>
                 <div className="about-intro__highlights">
                   <div className="about-intro__highlight">
-                    <span className="about-intro__highlight-value">500+</span>
-                    <span className="about-intro__highlight-label">研发人员</span>
+                    <span className="about-intro__highlight-value">{t(lang, 'about.highlight1Value')}</span>
+                    <span className="about-intro__highlight-label">{t(lang, 'about.highlight1Label')}</span>
                   </div>
                   <div className="about-intro__highlight">
-                    <span className="about-intro__highlight-value">128+</span>
-                    <span className="about-intro__highlight-label">发明专利</span>
+                    <span className="about-intro__highlight-value">{t(lang, 'about.highlight2Value')}</span>
+                    <span className="about-intro__highlight-label">{t(lang, 'about.highlight2Label')}</span>
                   </div>
                   <div className="about-intro__highlight">
-                    <span className="about-intro__highlight-value">4</span>
-                    <span className="about-intro__highlight-label">研发中心</span>
+                    <span className="about-intro__highlight-value">{t(lang, 'about.highlight3Value')}</span>
+                    <span className="about-intro__highlight-label">{t(lang, 'about.highlight3Label')}</span>
                   </div>
                 </div>
               </div>
@@ -107,8 +106,8 @@ function About() {
                     </svg>
                   </div>
                   <div>
-                    <div className="about-intro__card-title">IoT 平台</div>
-                    <div className="about-intro__card-desc">5000万+ 设备接入</div>
+                    <div className="about-intro__card-title">{t(lang, 'about.card1Title')}</div>
+                    <div className="about-intro__card-desc">{t(lang, 'about.card1Desc')}</div>
                   </div>
                 </div>
                 <div className="about-intro__card about-intro__card--2">
@@ -118,8 +117,8 @@ function About() {
                     </svg>
                   </div>
                   <div>
-                    <div className="about-intro__card-title">AI 芯片</div>
-                    <div className="about-intro__card-desc">自研 NPU 21 TOPS</div>
+                    <div className="about-intro__card-title">{t(lang, 'about.card2Title')}</div>
+                    <div className="about-intro__card-desc">{t(lang, 'about.card2Desc')}</div>
                   </div>
                 </div>
                 <div className="about-intro__card about-intro__card--3">
@@ -130,8 +129,8 @@ function About() {
                     </svg>
                   </div>
                   <div>
-                    <div className="about-intro__card-title">全球布局</div>
-                    <div className="about-intro__card-desc">65+ 国家和地区</div>
+                    <div className="about-intro__card-title">{t(lang, 'about.card3Title')}</div>
+                    <div className="about-intro__card-desc">{t(lang, 'about.card3Desc')}</div>
                   </div>
                 </div>
               </div>
@@ -144,8 +143,8 @@ function About() {
       <section className="section about-team">
         <div className="container">
           <ScrollAnimation>
-            <h2 className="section-title">核心团队</h2>
-            <p className="section-subtitle">汇聚行业顶尖人才，驱动技术创新</p>
+            <h2 className="section-title">{t(lang, 'about.teamTitle')}</h2>
+            <p className="section-subtitle">{t(lang, 'about.teamSubtitle')}</p>
           </ScrollAnimation>
           <div className="about-team__grid">
             {teamMembers.map((member, index) => (
@@ -168,8 +167,8 @@ function About() {
       <section className="section about-timeline">
         <div className="container">
           <ScrollAnimation>
-            <h2 className="section-title">发展历程</h2>
-            <p className="section-subtitle">从初创到行业领先，每一步都脚踏实地</p>
+            <h2 className="section-title">{t(lang, 'about.timelineTitle')}</h2>
+            <p className="section-subtitle">{t(lang, 'about.timelineSubtitle')}</p>
           </ScrollAnimation>
           <div className="timeline">
             {milestones.map((item, index) => (
@@ -192,8 +191,8 @@ function About() {
       <section className="section about-culture">
         <div className="container">
           <ScrollAnimation>
-            <h2 className="section-title">企业文化</h2>
-            <p className="section-subtitle">我们的价值观，指引前行的方向</p>
+            <h2 className="section-title">{t(lang, 'about.cultureTitle')}</h2>
+            <p className="section-subtitle">{t(lang, 'about.cultureSubtitle')}</p>
           </ScrollAnimation>
           <div className="about-culture__grid">
             {cultureItems.map((item, index) => (

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useLanguage, t } from '../i18n';
 import './Navbar.css';
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { lang, toggleLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,11 +22,11 @@ function Navbar() {
   }, [location]);
 
   const navLinks = [
-    { path: '/', label: '首页' },
-    { path: '/news', label: '资讯中心' },
-    { path: '/about', label: '关于我们' },
-    { path: '/products', label: '产品中心' },
-    { path: '/contact', label: '联系我们' }
+    { path: '/', label: t(lang, 'nav.home') },
+    { path: '/news', label: t(lang, 'nav.news') },
+    { path: '/about', label: t(lang, 'nav.about') },
+    { path: '/products', label: t(lang, 'nav.products') },
+    { path: '/contact', label: t(lang, 'nav.contact') }
   ];
 
   return (
@@ -44,7 +46,7 @@ function Navbar() {
               <path d="M14 16L20 10L26 16L20 22Z" fill="white" opacity="0.6" />
             </svg>
           </div>
-          <span className="navbar__logo-text">豆姜科技</span>
+          <span className="navbar__logo-text">{t(lang, 'nav.brand')}</span>
         </Link>
 
         <div className={`navbar__links ${mobileOpen ? 'navbar__links--open' : ''}`}>
@@ -60,9 +62,17 @@ function Navbar() {
         </div>
 
         <button
+          className="navbar__lang-btn"
+          onClick={toggleLanguage}
+          title={lang === 'en' ? '切换中文' : 'Switch to English'}
+        >
+          {lang === 'en' ? '中' : 'EN'}
+        </button>
+
+        <button
           className={`navbar__toggle ${mobileOpen ? 'navbar__toggle--open' : ''}`}
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          aria-label={t(lang, 'nav.toggleMenu')}
         >
           <span></span>
           <span></span>

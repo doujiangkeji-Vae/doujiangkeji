@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import ScrollAnimation from '../components/ScrollAnimation';
+import { useLanguage, t } from '../i18n';
 import { products } from '../data/mockData';
 import './Products.css';
 
 function Products() {
-  const categories = ['全部', ...new Set(products.map(p => p.category))];
-  const [activeCategory, setActiveCategory] = useState('全部');
+  const { lang } = useLanguage();
+
+  const allLabel = t(lang, 'products.all');
+  const categories = [allLabel, ...new Set(products.map(p => p.category))];
+  const [activeCategory, setActiveCategory] = useState(allLabel);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const filtered = activeCategory === '全部'
+  const filtered = activeCategory === allLabel
     ? products
     : products.filter(p => p.category === activeCategory);
 
@@ -21,8 +25,8 @@ function Products() {
           <div className="products-hero__glow products-hero__glow--2"></div>
         </div>
         <div className="container products-hero__content">
-          <h1 className="products-hero__title">产品中心</h1>
-          <p className="products-hero__subtitle">覆盖AI硬件应用全场景的智能硬件产品矩阵</p>
+          <h1 className="products-hero__title">{t(lang, 'products.title')}</h1>
+          <p className="products-hero__subtitle">{t(lang, 'products.subtitle')}</p>
         </div>
       </section>
 
@@ -61,7 +65,7 @@ function Products() {
                     ))}
                   </div>
                   <button className="products-grid__card-btn">
-                    查看详情
+                    {t(lang, 'products.viewDetails')}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
@@ -93,7 +97,7 @@ function Products() {
             </div>
             <p className="product-modal__desc">{selectedProduct.description}</p>
             <div className="product-modal__features">
-              <h3>核心特性</h3>
+              <h3>{t(lang, 'products.coreFeatures')}</h3>
               <div className="product-modal__features-list">
                 {selectedProduct.features.map((f, i) => (
                   <div key={i} className="product-modal__feature">
@@ -106,7 +110,7 @@ function Products() {
               </div>
             </div>
             <div className="product-modal__specs">
-              <h3>技术参数</h3>
+              <h3>{t(lang, 'products.specs')}</h3>
               <div className="product-modal__specs-table">
                 {Object.entries(selectedProduct.specs).map(([key, value]) => (
                   <div key={key} className="product-modal__spec-row">
@@ -118,11 +122,11 @@ function Products() {
             </div>
             <div className="product-modal__actions">
               {selectedProduct.link ? (
-                <a href={selectedProduct.link} target="_blank" rel="noopener noreferrer" className="btn btn-primary">查看详情</a>
+                <a href={selectedProduct.link} target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t(lang, 'products.viewDetails')}</a>
               ) : (
-                <button className="btn btn-primary">申请试用</button>
+                <button className="btn btn-primary">{t(lang, 'products.applyTrial')}</button>
               )}
-              <button className="btn btn-outline">下载资料</button>
+              <button className="btn btn-outline">{t(lang, 'products.download')}</button>
             </div>
           </div>
         </div>

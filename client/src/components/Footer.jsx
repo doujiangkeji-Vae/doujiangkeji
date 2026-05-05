@@ -74,7 +74,7 @@ function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>&copy; 2026 豆姜科技 {t(lang, 'footer.copyright')}</p>
+          <p>{t(lang, 'footer.copyright')}</p>
           <div className="footer__bottom-links">
             <Link to={`${prefix}/privacy`} className="footer__link">{t(lang, 'footer.privacy')}</Link>
             <Link to={`${prefix}/terms`} className="footer__link">{t(lang, 'footer.terms')}</Link>

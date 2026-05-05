@@ -225,24 +225,15 @@ export const newsArticles = [
 ];
 
 export const teamMembers = [
-  { id: 1, name: '张明远', title: '创始人 & CEO', avatar: null, bio: '前华为物联网事业部总监，20 年科技行业经验，MIT 计算机科学硕士。' },
-  { id: 2, name: '李伟', title: '联合创始人 & CTO', avatar: null, bio: '前阿里云 IoT 首席架构师，15 年技术研发经验，清华大学博士。' },
-  { id: 3, name: '王芳', title: 'COO', avatar: null, bio: '前小米生态链运营负责人，12 年互联网运营经验，北大 MBA。' },
-  { id: 4, name: '陈浩', title: 'VP of Engineering', avatar: null, bio: '前大疆算法团队负责人，专注计算机视觉与 AI，浙大博士。' },
-  { id: 5, name: '刘婷', title: 'VP of Design', avatar: null, bio: '前 Apple 工业设计师，红点奖、iF 设计奖获得者，中央美院硕士。' },
-  { id: 6, name: '赵强', title: 'VP of Sales', avatar: null, bio: '前海康威视国内销售总经理，18 年 B2B 销售经验。' }
+  { id: 1, name: '余志宇', title: '创始人', avatar: null, bio: '负责产品和技术，喜欢折腾硬件和 AI。' },
+  { id: 2, name: '待加入', title: '技术合伙人', avatar: null, bio: '寻找志同道合的技术伙伴，一起做有趣的产品。' },
+  { id: 3, name: '待加入', title: '运营合伙人', avatar: null, bio: '寻找有硬件或 AI 产品运营经验的朋友。' }
 ];
 
 export const milestones = [
-  { year: '2018', title: '公司成立', description: '豆姜科技在深圳成立，获得天使轮融资 2000 万元。' },
-  { year: '2019', title: '首款产品发布', description: '发布首款智能网关产品 DJ-SmartHub，获得市场热烈反响。' },
-  { year: '2020', title: 'A 轮融资', description: '完成 A 轮融资 1.5 亿元，团队规模扩展至 100 人。' },
-  { year: '2021', title: '生态布局', description: '发布物联网开放平台，合作伙伴超过 500 家。' },
-  { year: '2022', title: '海外拓展', description: '产品进入东南亚和欧洲市场，海外营收占比达 20%。' },
-  { year: '2023', title: '技术突破', description: '自研边缘 AI 芯片流片成功，获得发明专利 50 项。' },
-  { year: '2024', title: '行业领先', description: '入选国家级专精特新企业，年营收突破 10 亿元。' },
-  { year: '2025', title: '全球布局', description: '完成 B 轮融资，全球服务客户超过 2000 家，产品覆盖 65 个国家。' },
-  { year: '2026', title: '智造未来', description: '发布全新产品矩阵，开启"智造未来"战略新篇章。' }
+  { year: '2026', title: '公司成立', description: '豆姜科技在杭州成立，开始研发 AI 穿戴式硬件产品。' },
+  { year: '2026', title: '产品规划', description: '确定首批 6 款产品的开发计划，包括 AI 记忆助手、拾音工牌等。' },
+  { year: '2026', title: '网站上线', description: '官方网站 djkj.top 上线，展示产品信息和公司介绍。' }
 ];
 
 export const mailData = {

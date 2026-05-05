@@ -108,6 +108,14 @@ function Contact() {
                       required
                     ></textarea>
                   </div>
+                  <div className="contact__privacy">
+                    <label className="contact__privacy-label">
+                      <input type="checkbox" required />
+                      <span>{lang === 'zh' ? '我已阅读并同意' : 'I have read and agree to the '}
+                        <Link to={`${prefix}/privacy`} style={{ color: 'var(--accent-blue)' }}>{lang === 'zh' ? '隐私政策' : 'Privacy Policy'}</Link>
+                      </span>
+                    </label>
+                  </div>
                   <button type="submit" className="btn btn-primary contact-form__submit">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <line x1="22" y1="2" x2="11" y2="13" />

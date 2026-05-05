@@ -206,11 +206,14 @@ function Home() {
                 <button
                   className="btn btn-primary"
                   onClick={() => {
-                    if (email) {
-                      setSubscribed(true);
-                      setEmail('');
-                      setTimeout(() => setSubscribed(false), 3000);
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!email || !emailRegex.test(email)) {
+                      alert(lang === 'zh' ? '请输入有效的邮箱地址' : 'Please enter a valid email address');
+                      return;
                     }
+                    setSubscribed(true);
+                    setEmail('');
+                    setTimeout(() => setSubscribed(false), 3000);
                   }}
                 >
                   {subscribed ? t(lang, 'home.subscribed') : t(lang, 'home.subscribeBtn')}

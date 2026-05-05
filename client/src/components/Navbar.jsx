@@ -55,7 +55,7 @@ function Navbar() {
             <Link
               key={link.path}
               to={link.path}
-              className={`navbar__link ${location.pathname === link.path ? 'navbar__link--active' : ''}`}
+              className={`navbar__link ${location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path)) ? 'navbar__link--active' : ''}`}
             >
               {link.label}
             </Link>

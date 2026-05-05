@@ -25,7 +25,7 @@ export const products = [
   {
     id: 3,
     name: 'Hermes Agent应用',
-    category: 'AI Agent',
+    category: 'AI智能体',
     brief: '企业级AI智能体平台，可视化工作流编排，多模态AI能力集成',
     description: 'Hermes 是豆姜科技推出的企业级AI Agent应用平台。支持可视化工作流编排，无需代码即可构建复杂的AI自动化流程。内置多模态AI能力，支持文本、语音、图像、视频的智能理解与生成。提供企业知识库接入、私有化部署、多LLM模型切换等核心功能。广泛应用于智能客服、文档处理、数据分析、营销自动化等企业场景。开放API接口，可快速集成到现有业务系统。',
     features: ['可视化工作流编排', '多模态AI能力', '企业知识库接入', '私有化部署', '多LLM模型切换', '开放API接口'],

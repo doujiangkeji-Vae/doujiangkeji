@@ -11,6 +11,10 @@ import Mail from './pages/Mail';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Sitemap from './pages/Sitemap';
+import NotFound from './pages/NotFound';
 import './styles/global.css';
 
 function ScrollToTop() {
@@ -40,6 +44,9 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/sitemap" element={<Sitemap />} />
 
               {/* 中文版路由 */}
               <Route path="/cn" element={<Home />} />
@@ -51,6 +58,10 @@ function App() {
               <Route path="/cn/mail" element={<Mail />} />
               <Route path="/cn/login" element={<Login />} />
               <Route path="/cn/admin" element={<Admin />} />
+              <Route path="/cn/privacy" element={<Privacy />} />
+              <Route path="/cn/terms" element={<Terms />} />
+              <Route path="/cn/sitemap" element={<Sitemap />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <Footer />

@@ -6,7 +6,7 @@ function Mail() {
   const { lang } = useLanguage();
   const [activeTab, setActiveTab] = useState('login');
 
-  const enterpriseEmail = 'yuzhiyu@djkj.top';
+  const enterpriseEmail = 'yuzhiyu@doujiangai.cn';
 
   return (
     <div className="page-wrapper">
@@ -110,12 +110,12 @@ function Mail() {
             {activeTab === 'config' && (
               <div className="mail-login-card">
                 <h2 className="mail-login-title">
-                  {lang === 'zh' ? '域名邮箱转发配置' : 'Domain Email Forwarding Setup'}
+                  {lang === 'zh' ? '腾讯企业邮箱配置' : 'Tencent Enterprise Email Setup'}
                 </h2>
                 <p className="mail-login-desc">
                   {lang === 'zh'
-                    ? '按照以下步骤配置，即可实现发到企业邮箱的邮件自动转发'
-                    : 'Follow these steps to set up automatic email forwarding'}
+                    ? '已配置腾讯企业邮箱，使用 doujiangai.cn 域名'
+                    : 'Tencent Enterprise Email configured with doujiangai.cn domain'}
                 </p>
 
                 <div className="mail-config-steps">
@@ -123,12 +123,12 @@ function Mail() {
                     <div className="mail-config-step-number">1</div>
                     <div className="mail-config-step-content">
                       <h3>
-                        {lang === 'zh' ? '登录腾讯云控制台' : 'Login to Tencent Cloud Console'}
+                        {lang === 'zh' ? '登录腾讯企业邮箱' : 'Login to Tencent Enterprise Email'}
                       </h3>
                       <p>
                         {lang === 'zh'
-                          ? '打开 腾讯云控制台 → 域名注册 → 找到 djkj.top → 点击"解析"'
-                          : 'Open Tencent Cloud Console → Domain Registration → Find djkj.top → Click "DNS Resolution"'}
+                          ? '访问 exmail.qq.com，使用企业邮箱账号登录\n邮箱地址：yuzhiyu@doujiangai.cn'
+                          : 'Visit exmail.qq.com and login with enterprise email\nEmail: yuzhiyu@doujiangai.cn'}
                       </p>
                     </div>
                   </div>
@@ -137,34 +137,13 @@ function Mail() {
                     <div className="mail-config-step-number">2</div>
                     <div className="mail-config-step-content">
                       <h3>
-                        {lang === 'zh' ? '添加 MX 记录' : 'Add MX Record'}
+                        {lang === 'zh' ? '网页版登录' : 'Web Login'}
                       </h3>
-                      <div className="mail-config-table">
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>{lang === 'zh' ? '类型' : 'Type'}</th>
-                              <th>{lang === 'zh' ? '主机记录' : 'Host'}</th>
-                              <th>{lang === 'zh' ? '记录值' : 'Value'}</th>
-                              <th>{lang === 'zh' ? '优先级' : 'Priority'}</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td><code>MX</code></td>
-                              <td><code>@</code></td>
-                              <td><code>mxw.126.com</code></td>
-                              <td><code>5</code></td>
-                            </tr>
-                            <tr>
-                              <td><code>MX</code></td>
-                              <td><code>@</code></td>
-                              <td><code>mxn.126.com</code></td>
-                              <td><code>10</code></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                      <p>
+                        {lang === 'zh'
+                          ? '直接在浏览器访问 exmail.qq.com 登录\n或使用 mail.doujiangai.cn（如已配置）'
+                          : 'Login directly at exmail.qq.com\nOr use mail.doujiangai.cn (if configured)'}
+                      </p>
                     </div>
                   </div>
 
@@ -172,26 +151,13 @@ function Mail() {
                     <div className="mail-config-step-number">3</div>
                     <div className="mail-config-step-content">
                       <h3>
-                        {lang === 'zh' ? '添加 TXT 记录（验证域名所有权）' : 'Add TXT Record (Domain Verification)'}
+                        {lang === 'zh' ? '手机客户端配置' : 'Mobile Client Setup'}
                       </h3>
-                      <div className="mail-config-table">
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>{lang === 'zh' ? '类型' : 'Type'}</th>
-                              <th>{lang === 'zh' ? '主机记录' : 'Host'}</th>
-                              <th>{lang === 'zh' ? '记录值' : 'Value'}</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td><code>TXT</code></td>
-                              <td><code>@</code></td>
-                              <td><code>v=spf1 include:126.com ~all</code></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                      <p>
+                        {lang === 'zh'
+                          ? '下载 QQ邮箱 APP 或 Foxmail\n添加账号 → 选择腾讯企业邮箱 → 输入账号密码'
+                          : 'Download QQ Mail APP or Foxmail\nAdd Account → Select Tencent Enterprise Email → Enter credentials'}
+                      </p>
                     </div>
                   </div>
 
@@ -199,27 +165,31 @@ function Mail() {
                     <div className="mail-config-step-number">4</div>
                     <div className="mail-config-step-content">
                       <h3>
-                        {lang === 'zh' ? '在 126 邮箱设置企业邮箱' : 'Setup Enterprise Email in 126 Mailbox'}
+                        {lang === 'zh' ? 'IMAP/SMTP 设置（第三方客户端）' : 'IMAP/SMTP Settings (Third-party Clients)'}
                       </h3>
-                      <p>
-                        {lang === 'zh'
-                          ? '1. 登录 doujiangkeji@126.com\n2. 设置 → 邮箱绑定 → 绑定企业邮箱\n3. 输入 yuzhiyu@djkj.top\n4. 按提示完成域名验证'
-                          : '1. Login to doujiangkeji@126.com\n2. Settings → Email Binding → Bind Enterprise Email\n3. Enter yuzhiyu@djkj.top\n4. Complete domain verification'}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mail-config-step">
-                    <div className="mail-config-step-number">5</div>
-                    <div className="mail-config-step-content">
-                      <h3>
-                        {lang === 'zh' ? '等待生效' : 'Wait for Activation'}
-                      </h3>
-                      <p>
-                        {lang === 'zh'
-                          ? 'DNS 记录通常需要 10-30 分钟生效。生效后，发送到 yuzhiyu@djkj.top 的邮件将自动转发到 doujiangkeji@126.com'
-                          : 'DNS records usually take 10-30 minutes to take effect. After activation, emails sent to yuzhiyu@djkj.top will be automatically forwarded to doujiangkeji@126.com'}
-                      </p>
+                      <div className="mail-config-table">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>{lang === 'zh' ? '协议' : 'Protocol'}</th>
+                              <th>{lang === 'zh' ? '服务器' : 'Server'}</th>
+                              <th>{lang === 'zh' ? '端口' : 'Port'}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><code>IMAP</code></td>
+                              <td><code>imap.exmail.qq.com</code></td>
+                              <td><code>993 (SSL)</code></td>
+                            </tr>
+                            <tr>
+                              <td><code>SMTP</code></td>
+                              <td><code>smtp.exmail.qq.com</code></td>
+                              <td><code>465 (SSL)</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>

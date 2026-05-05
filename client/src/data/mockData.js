@@ -67,6 +67,54 @@ export const products = [
 
 export const newsArticles = [
   {
+    id: 10,
+    title: { zh: 'DeepSeek-V4完成国产芯片原生适配，AI算力自主可控迈出关键一步', en: 'DeepSeek-V4 Completes Native Adaptation for Domestic AI Chips' },
+    category: { zh: '技术前沿', en: 'Tech Frontier' },
+    date: '2026-05-04',
+    summary: { zh: 'DeepSeek宣布V4大模型已完成与国内主流AI芯片的原生兼容适配升级，旨在摆脱对海外高端算力芯片的单一依赖。', en: 'DeepSeek announced V4 model has completed native compatibility upgrades with major domestic AI chips, aiming to reduce dependency on overseas high-end computing chips.' },
+    content: {
+      zh: '2026年5月3日，DeepSeek宣布其V4大模型已完成与国内主流AI芯片的原生兼容适配升级，这是国产AI生态建设的又一里程碑事件。\n\n**核心进展：**\n\n1. **多芯片适配**：V4模型已实现对华为昇腾、寒武纪、海光信息、摩尔线程等国产AI芯片的原生支持。\n\n2. **性能优化**：针对国产芯片架构特点进行了深度优化，推理效率较初始版本提升约40%。\n\n3. **生态完善**：配套推出了统一的推理框架和部署工具链，降低企业迁移成本。\n\n**行业影响：**\n\n- 寒武纪2026年Q1营收28.85亿元，同比增长159.56%，首次实现季度经营现金流为正\n- 海光信息、摩尔线程等国产AI芯片企业悉数实现盈利\n- 国内AI大模型融资总额突破8900亿元\n\n业内人士分析，DeepSeek-V4的国产芯片适配标志着中国AI产业正在加速构建自主可控的技术底座，对整个产业链具有深远意义。',
+      en: 'On May 3, 2026, DeepSeek announced its V4 model has completed native compatibility upgrades with major domestic AI chips, marking another milestone in China\'s AI ecosystem development.\n\n**Key Progress:**\n\n1. **Multi-chip Support**: V4 model now natively supports Huawei Ascend, Cambricon, Hygon, and Moore Threads chips.\n\n2. **Performance Optimization**: Deep optimization for domestic chip architectures, improving inference efficiency by approximately 40%.\n\n3. **Ecosystem**: Unified inference framework and deployment toolchain to reduce enterprise migration costs.\n\n**Industry Impact:**\n\n- Cambricon Q1 2026 revenue reached 2.885 billion RMB, up 159.56% YoY\n- Domestic AI chip companies including Hygon and Moore Threads all achieved profitability\n- Total domestic LLM financing exceeded 890 billion RMB'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
+  },
+  {
+    id: 11,
+    title: { zh: '科技巨头AI投资激增77%，四家合计投入7250亿美元', en: 'Tech Giants Boost AI Investment by 77%, Totaling $725 Billion' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-05-03',
+    summary: { zh: '谷歌、亚马逊、微软、Meta计划2026年在AI领域投入合计7250亿美元，微软同比激增192.3%领跑全行业。', en: 'Google, Amazon, Microsoft, and Meta plan to invest a combined $725 billion in AI in 2026, with Microsoft leading at 192.3% YoY growth.' },
+    content: {
+      zh: '2026年5月，最新数据显示全球科技巨头在AI领域的投入持续加码。\n\n**投资数据：**\n\n- **四巨头合计**：7250亿美元，较去年增长77%\n- **微软**：同比激增192.3%，领跑全行业\n- **亚马逊**：AWS AI基础设施大规模扩建\n- **谷歌**：DeepMind研发投入持续加大\n- **Meta**：AI推荐系统和AR/VR方向重点投入\n\n**行业趋势：**\n\n1. 企业级AI应用采购预算在2026年Q1同比增长超过300%\n2. AI Agent成为新的投资热点，多模态AI应用加速落地\n3. 全球AI人才争夺白热化，顶级AI研究员年薪突破200万美元\n\n**国内对比：**\n\n国内AI大模型领域同样保持高速增长，融资总额突破8900亿元。百度、阿里、字节跳动等头部企业持续加大AI投入，大模型密集迭代。',
+      en: 'May 2026 data shows global tech giants continue to increase AI investment.\n\n**Investment Data:**\n\n- **Big Four Total**: $725 billion, up 77% YoY\n- **Microsoft**: 192.3% YoY growth, leading the industry\n- **Amazon**: Large-scale AWS AI infrastructure expansion\n- **Google**: Increased DeepMind R&D investment\n- **Meta**: Focus on AI recommendation systems and AR/VR\n\n**Industry Trends:**\n\n1. Enterprise AI procurement budgets grew over 300% in Q1 2026\n2. AI Agents become new investment hotspot\n3. Global AI talent war intensifies, top researchers exceeding $2M annual salary\n\n**Domestic Comparison:**\n\nChina\'s LLM sector maintains rapid growth with total financing exceeding 890 billion RMB. Baidu, Alibaba, and ByteDance continue to increase AI investment.'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
+  },
+  {
+    id: 12,
+    title: { zh: '人形机器人进入养老院，AI银发助手成行业新焦点', en: 'Humanoid Robots Enter Nursing Homes, AI Elderly Care Assistants Become Industry Focus' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-05-02',
+    summary: { zh: '多家AI企业发布面向老年群体的AI产品，基于国产大模型的"银发智能助手"能通过分析老年人日常行为提供健康预警和情感陪伴。', en: 'Multiple AI companies released products for elderly care. "Silver Hair AI Assistant" based on domestic LLMs provides health alerts and emotional companionship.' },
+    content: {
+      zh: '2026年5月2日，多家人工智能企业发布专门面向老年群体的AI产品，人形机器人进入养老院已成为现实。\n\n**产品亮点：**\n\n1. **银发智能助手**：基于国产大模型开发，能通过分析老年人日常行为模式提供个性化健康建议。\n\n2. **情感陪伴**：AI语音助手具备自然对话能力，可为独居老人提供日常聊天、用药提醒、紧急呼叫等服务。\n\n3. **健康监测**：结合可穿戴设备，实时监测心率、血压、睡眠质量等健康指标，异常时自动预警。\n\n4. **人形机器人**：部分养老院已引入人形机器人，协助老人进行康复训练、日常起居等。\n\n**市场前景：**\n\n中国60岁以上人口已超过3亿，养老产业市场规模预计突破10万亿元。AI+养老被视为下一个万亿级赛道，多家科技企业已开始布局。',
+      en: 'On May 2, 2026, multiple AI companies released products for elderly care. Humanoid robots entering nursing homes has become a reality.\n\n**Product Highlights:**\n\n1. **Silver Hair AI Assistant**: Based on domestic LLMs, provides personalized health advice by analyzing elderly daily behavior patterns.\n\n2. **Emotional Companionship**: AI voice assistants with natural conversation capabilities for daily chat, medication reminders, and emergency calls.\n\n3. **Health Monitoring**: Combined with wearable devices for real-time monitoring of heart rate, blood pressure, and sleep quality.\n\n4. **Humanoid Robots**: Some nursing homes have introduced humanoid robots to assist with rehabilitation and daily living.\n\n**Market Outlook:**\n\nChina\'s population aged 60+ exceeds 300 million, with the elderly care market expected to surpass 10 trillion RMB. AI+elderly care is seen as the next trillion-yuan market segment.'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
+  },
+  {
+    id: 13,
+    title: { zh: 'AMD最新AI芯片曝光，统一内存容量突破256GB', en: 'AMD Latest AI Chip Leaked, Unified Memory Exceeds 256GB' },
+    category: { zh: '技术前沿', en: 'Tech Frontier' },
+    date: '2026-05-01',
+    summary: { zh: 'AMD"Gorgon Halo"系列AI芯片曝光，统一内存容量从128GB提升至256GB，面向AI工作站和边缘计算场景。', en: 'AMD "Gorgon Halo" series AI chip leaked, unified memory increased from 128GB to 256GB, targeting AI workstations and edge computing.' },
+    content: {
+      zh: '2026年5月，AMD最新AI芯片信息曝光，引发行业广泛关注。\n\n**芯片规格：**\n\n- **系列名称**：Gorgon Halo\n- **定位**：现有Strix Halo旗舰APU的后续产品\n- **统一内存**：从128GB提升至256GB\n- **目标场景**：AI工作站、边缘计算、AI PC\n\n**技术亮点：**\n\n1. **大容量统一内存**：256GB统一内存可运行更大的AI模型，无需频繁与外部存储交换数据。\n\n2. **能效优化**：采用最新制程工艺，AI推理功耗较上代降低30%。\n\n3. **生态兼容**：支持主流AI框架（PyTorch、TensorFlow、ONNX），开箱即用。\n\n**行业影响：**\n\nAMD在AI芯片领域的持续发力，将进一步加剧与NVIDIA、Intel的竞争。对于AI硬件企业而言，更多芯片选择意味着更好的性价比和供应链安全。',
+      en: 'May 2026, AMD\'s latest AI chip information was leaked, drawing widespread industry attention.\n\n**Chip Specifications:**\n\n- **Series**: Gorgon Halo\n- **Positioning**: Successor to Strix Halo flagship APU\n- **Unified Memory**: Increased from 128GB to 256GB\n- **Target**: AI workstations, edge computing, AI PCs\n\n**Technical Highlights:**\n\n1. **Large Unified Memory**: 256GB enables running larger AI models without frequent data swapping.\n\n2. **Energy Efficiency**: Latest manufacturing process reduces AI inference power consumption by 30%.\n\n3. **Ecosystem**: Supports mainstream AI frameworks (PyTorch, TensorFlow, ONNX) out of the box.\n\n**Industry Impact:**\n\nAMD\'s continued investment in AI chips will intensify competition with NVIDIA and Intel. For AI hardware companies, more chip choices mean better pricing and supply chain security.'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
+  },
+  {
     id: 1,
     title: { zh: 'Anthropic发布Claude Opus 4.7，AI大模型竞争进入新阶段', en: 'Anthropic Releases Claude Opus 4.7 — AI Model Competition Enters New Era' },
     category: { zh: '行业动态', en: 'Industry Trends' },

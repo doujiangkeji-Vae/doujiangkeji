@@ -2,22 +2,8 @@
   "buildCommand": "cd client && npm install && npm run build",
   "outputDirectory": "client/dist",
   "framework": "vite",
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.js" },
-    { "source": "/cn/(.*)", "destination": "/index.html" }
-  ],
-  "routes": [
-    { "src": "/(.*\\.txt)", "dest": "/$1" },
-    { "src": "/(.*\\.xml)", "dest": "/$1" },
-    { "src": "/(.*\\.json)", "dest": "/$1" },
-    { "src": "/(favicon\\.svg)", "dest": "/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ],
-  "functions": {
-    "api/**/*.js": {
-      "includeFiles": "server/**/*.*"
-    }
-  },
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/(.*)",

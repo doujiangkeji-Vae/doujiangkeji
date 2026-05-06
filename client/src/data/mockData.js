@@ -67,6 +67,42 @@ export const products = [
 
 export const newsArticles = [
   {
+    id: 14,
+    title: { zh: '谷歌内部代码75%由AI生成，AI编程时代全面来临', en: 'Google: 75% of Internal Code Now AI-Generated' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-05-06',
+    summary: { zh: '谷歌CEO披露公司内部已有75%代码由AI生成，AI编程工具正在重塑软件开发流程。', en: 'Google CEO revealed 75% of internal code is now AI-generated, as AI coding tools reshape software development.' },
+    content: {
+      zh: '2026年5月6日，谷歌CEO在开发者大会上披露，公司内部代码已有75%由AI生成，这一数据引发行业震动。\n\n**关键数据：**\n\n1. **代码生成**：75%的新增代码由AI辅助或完全生成\n2. **效率提升**：开发周期平均缩短40%\n3. **质量改善**：AI生成代码的bug率比人工编写低15%\n\n**行业影响：**\n\n- 软件工程师角色正在从"写代码"转向"审代码"\n- AI编程工具市场规模预计2026年突破500亿美元\n- 初级程序员岗位需求大幅下降，高级架构师需求激增\n\n**国内动态：**\n\n百度、阿里、字节等国内大厂也在加速AI编程工具布局，通义灵码、文心快码等产品用户量快速增长。',
+      en: 'On May 6, 2026, Google CEO revealed at the developer conference that 75% of internal code is now AI-generated, shocking the industry.\n\n**Key Data:**\n\n1. **Code Generation**: 75% of new code is AI-assisted or fully generated\n2. **Efficiency**: Development cycles shortened by 40% on average\n3. **Quality**: AI-generated code has 15% fewer bugs than human-written code\n\n**Industry Impact:**\n\n- Software engineers shifting from "writing code" to "reviewing code"\n- AI coding tools market expected to exceed $50 billion in 2026\n- Junior programmer demand declining, senior architect demand surging'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
+  },
+  {
+    id: 15,
+    title: { zh: 'OpenAI首款AI手机曝光，2027年量产目标确定', en: 'OpenAI First AI Phone Leaked, 2027 Mass Production Target Confirmed' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-05-06',
+    summary: { zh: '知名分析师郭明錤披露，OpenAI正在加速推进首款AI手机项目，目标2027年上半年实现量产。', en: 'Analyst Ming-Chi Kuo disclosed OpenAI is accelerating its first AI phone project, targeting mass production in H1 2027.' },
+    content: {
+      zh: '2026年5月6日，知名分析师郭明錤发布最新报告，披露OpenAI正在加速推进其首款AI手机项目。\n\n**产品规划：**\n\n1. **量产时间**：2027年上半年\n2. **核心功能**：原生集成GPT-5.5，支持离线AI推理\n3. **硬件配置**：自研AI芯片，16GB+内存\n4. **目标市场**：高端旗舰，预计售价1500美元起\n\n**行业意义：**\n\n- AI大模型从软件向硬件端渗透加速\n- 传统手机厂商面临新一轮竞争压力\n- AI原生设备可能成为下一代计算平台\n\n**供应链动态：**\n\n据悉，OpenAI已与富士康、立讯精密等代工厂接触，商讨量产事宜。',
+      en: 'On May 6, 2026, analyst Ming-Chi Kuo released a report disclosing OpenAI is accelerating its first AI phone project.\n\n**Product Plan:**\n\n1. **Mass Production**: H1 2027\n2. **Core Features**: Native GPT-5.5 integration, offline AI inference\n3. **Hardware**: Self-developed AI chip, 16GB+ RAM\n4. **Target Market**: Premium flagship, expected price $1500+\n\n**Industry Significance:**\n\n- AI models accelerating penetration from software to hardware\n- Traditional phone makers facing new competitive pressure\n- AI-native devices may become next-gen computing platforms'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
+  },
+  {
+    id: 16,
+    title: { zh: '哈佛研究：AI急诊诊断首次超越人类医生', en: 'Harvard Study: AI Emergency Diagnosis Surpasses Human Doctors for First Time' },
+    category: { zh: '技术前沿', en: 'Tech Frontier' },
+    date: '2026-05-06',
+    summary: { zh: '哈佛大学医学院研究显示，AI系统在急诊诊断准确率上首次超越人类医生，误诊率降低23%。', en: 'Harvard Medical School study shows AI systems surpassed human doctors in emergency diagnosis accuracy for the first time.' },
+    content: {
+      zh: '2026年5月6日，哈佛大学医学院发布重磅研究成果：AI急诊诊断系统在准确率上首次超越人类医生。\n\n**研究数据：**\n\n1. **诊断准确率**：AI系统 94.2% vs 人类医生 87.5%\n2. **误诊率降低**：AI误诊率比人类医生低23%\n3. **响应时间**：AI平均诊断时间 3.2秒 vs 人类医生 8.5分钟\n4. **研究规模**：覆盖12万例急诊病例，为期18个月\n\n**技术突破：**\n\n- 多模态AI融合：结合病历、影像、检验数据综合判断\n- 知识图谱：整合最新医学文献和临床指南\n- 持续学习：系统随使用不断优化\n\n**应用前景：**\n\n研究团队表示，该系统计划在2026年下半年在波士顿多家医院试点应用，未来有望推广至全球医疗机构。',
+      en: 'On May 6, 2026, Harvard Medical School released groundbreaking research: AI emergency diagnosis systems surpassed human doctors in accuracy for the first time.\n\n**Research Data:**\n\n1. **Diagnosis Accuracy**: AI 94.2% vs Human Doctors 87.5%\n2. **Misdiagnosis Rate**: AI 23% lower than human doctors\n3. **Response Time**: AI 3.2 seconds vs Human Doctors 8.5 minutes\n4. **Study Scale**: 120,000 emergency cases over 18 months\n\n**Technical Breakthrough:**\n\n- Multimodal AI: Combines medical records, imaging, and lab data\n- Knowledge Graph: Integrates latest medical literature and guidelines\n- Continuous Learning: System improves with use\n\n**Application Prospects:**\n\nThe research team plans to pilot the system in several Boston hospitals in H2 2026, with potential global rollout.'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
+  },
+  {
     id: 10,
     title: { zh: 'DeepSeek-V4完成国产芯片原生适配，AI算力自主可控迈出关键一步', en: 'DeepSeek-V4 Completes Native Adaptation for Domestic AI Chips' },
     category: { zh: '技术前沿', en: 'Tech Frontier' },

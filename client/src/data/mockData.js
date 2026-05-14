@@ -67,6 +67,42 @@ export const products = [
 
 export const newsArticles = [
   {
+    id: 17,
+    title: { zh: '2026全球AI终端展在深圳开幕，400余家企业参展', en: '2026 Global AI Terminal Expo Opens in Shenzhen with 400+ Exhibitors' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-05-14',
+    summary: { zh: '2026全球人工智能终端展暨第七届深圳国际人工智能展览会在深圳会展中心正式启幕，人形机器人与AI手机成为全场焦点。', en: 'The 2026 Global AI Terminal Expo opened in Shenzhen, with humanoid robots and AI phones as the main highlights.' },
+    content: {
+      zh: '2026年5月14日，2026全球人工智能终端展暨第七届深圳国际人工智能展览会在深圳会展中心（福田）正式启幕。\n\n**展会亮点：**\n\n1. **规模空前**：400余家企业参展，数千款前沿产品集中展示\n2. **主题**："万物新生"，聚焦AI终端全链条成果\n3. **展区设置**：新一代AI终端、具身智能、AI芯片设计、智慧医疗等\n\n**焦点产品：**\n\n- 人形机器人：多款新品发布，价格下探至3万元区间\n- AI手机：多家厂商展示AI原生手机概念机\n- AI穿戴设备：AI眼镜、AI耳机、AI手环等新品密集发布\n- AI芯片：国产AI芯片企业集中展示最新成果\n\n**行业趋势：**\n\n展会现场，多模态大模型成为全场焦点，AI正从云端向终端快速渗透，普惠AI时代正在到来。',
+      en: 'On May 14, 2026, the Global AI Terminal Expo opened at Shenzhen Convention & Exhibition Center.\n\n**Highlights:**\n\n1. **Scale**: 400+ exhibitors, thousands of cutting-edge products\n2. **Theme**: "New Era of Everything", focusing on full-chain AI terminal achievements\n3. **Zones**: Next-gen AI terminals, embodied intelligence, AI chip design, smart healthcare\n\n**Featured Products:**\n\n- Humanoid robots: Multiple new releases, prices dropping to ~30,000 RMB\n- AI phones: Several manufacturers showcasing AI-native phone concepts\n- AI wearables: AI glasses, earbuds, and wristbands\n- AI chips: Domestic AI chip companies showcasing latest achievements'
+    },
+    source: { zh: '来源：今日头条、央广网', en: 'Source: Toutiao, CNR' }
+  },
+  {
+    id: 18,
+    title: { zh: '多模态大模型成全场焦点，AI从云端向终端快速渗透', en: 'Multimodal LLMs Take Center Stage, AI Moves from Cloud to Edge' },
+    category: { zh: '技术前沿', en: 'Tech Frontier' },
+    date: '2026-05-14',
+    summary: { zh: 'AI产业迈入技术迭代与场景落地的双重爆发期，多模态大模型正推动AI从云端向终端快速渗透，开启普惠AI新时代。', en: 'AI industry enters dual explosion of tech iteration and scenario deployment, multimodal LLMs driving AI from cloud to edge.' },
+    content: {
+      zh: '2026年5月14日，AI产业正迈入技术迭代与场景落地的双重爆发期。\n\n**核心趋势：**\n\n1. **多模态大模型**：成为AI终端的核心引擎，支持文本、语音、图像、视频的统一理解与生成\n2. **端侧AI**：AI模型小型化，可在手机、PC、穿戴设备上本地运行\n3. **普惠AI**：AI能力从企业级向消费级快速普及\n\n**数据支撑：**\n\n- AI企业报名参展数量同比增长85%\n- 多模态大模型相关企业占比超过40%\n- 端侧AI芯片出货量同比增长200%\n\n**应用场景：**\n\n- 智能客服、实时翻译、文档处理\n- 健康监测、辅助诊断\n- 智能家居、自动驾驶\n- 工业质检、安全生产',
+      en: 'On May 14, 2026, the AI industry enters a dual explosion of tech iteration and scenario deployment.\n\n**Core Trends:**\n\n1. **Multimodal LLMs**: Core engine for AI terminals, unified understanding of text, voice, image, and video\n2. **Edge AI**: AI models miniaturized for local execution on phones, PCs, wearables\n3. **Accessible AI**: AI capabilities rapidly expanding from enterprise to consumer\n\n**Data:**\n\n- AI enterprise registrations up 85% YoY\n- Multimodal LLM companies exceed 40% of exhibitors\n- Edge AI chip shipments up 200% YoY'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
+  },
+  {
+    id: 19,
+    title: { zh: '人形机器人价格下探至3万元，量产时代即将到来', en: 'Humanoid Robot Prices Drop to 30,000 RMB, Mass Production Era Approaching' },
+    category: { zh: '行业动态', en: 'Industry Trends' },
+    date: '2026-05-14',
+    summary: { zh: '深圳AI终端展上多款人形机器人新品发布，价格下探至3万元区间，量产能力大幅提升。', en: 'Multiple humanoid robots debuted at Shenzhen AI Expo, with prices dropping to ~30,000 RMB range.' },
+    content: {
+      zh: '2026年5月14日，深圳AI终端展上，人形机器人成为最受关注的品类之一。\n\n**市场动态：**\n\n1. **价格下探**：多款人形机器人价格进入3万元区间，较去年下降超50%\n2. **量产能力**：多家企业宣布年产能突破万台\n3. **应用场景**：工厂巡检、仓储物流、酒店服务、养老陪护\n\n**技术突破：**\n\n- 关节电机国产化率超过80%，成本大幅降低\n- AI大模型赋能，机器人交互能力显著提升\n- 运动控制算法优化，行走稳定性接近人类水平\n\n**行业预测：**\n\n据市场研究机构预测，2026年中国人形机器人市场规模将突破500亿元，2028年有望达到2000亿元。',
+      en: 'On May 14, 2026, humanoid robots became one of the most watched categories at the Shenzhen AI Expo.\n\n**Market Dynamics:**\n\n1. **Price Drop**: Multiple models entering ~30,000 RMB range, down 50%+ from last year\n2. **Mass Production**: Several companies announcing annual capacity exceeding 10,000 units\n3. **Use Cases**: Factory inspection, warehouse logistics, hotel service, elderly care\n\n**Tech Breakthroughs:**\n\n- Joint motor domestication rate exceeds 80%, significantly reducing costs\n- LLM-powered interaction capabilities greatly improved\n- Motion control optimization, walking stability approaching human level\n\n**Forecast:**\n\nChina humanoid robot market expected to exceed 50 billion RMB in 2026, potentially reaching 200 billion by 2028.'
+    },
+    source: { zh: '来源：今日头条', en: 'Source: Toutiao' }
+  },
+  {
     id: 14,
     title: { zh: '谷歌内部代码75%由AI生成，AI编程时代全面来临', en: 'Google: 75% of Internal Code Now AI-Generated' },
     category: { zh: '行业动态', en: 'Industry Trends' },

@@ -3,7 +3,7 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const Database = require('better-sqlite3');
+const { Pool } = require('pg');
 
 const app = express();
 const PORT = 3001;
@@ -52,142 +52,75 @@ app.use((req, res, next) => {
 });
 
 // ============================================================
-// SQLite Database Initialization
+// PostgreSQL Database Initialization
 // ============================================================
-const DATA_DIR = path.join(__dirname, 'data');
-fs.mkdirSync(DATA_DIR, { recursive: true });
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_83EWAhNfreQF@ep-empty-dawn-aq9f9zq6.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require',
+  ssl: { rejectUnauthorized: false }
+});
 
-const DB_PATH = path.join(DATA_DIR, 'doujiang.db');
-const db = new Database(DB_PATH);
+// Initialize database tables
+async function initDatabase() {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS articles (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        category TEXT DEFAULT '未分类',
+        date TEXT NOT NULL,
+        summary TEXT,
+        content TEXT NOT NULL,
+        source TEXT DEFAULT '',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
 
-// Enable WAL mode for better performance
-db.pragma('journal_mode = WAL');
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS contacts (
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        email TEXT NOT NULL,
+        phone TEXT DEFAULT '',
+        message TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
 
-// Create tables
-db.exec(`
-  CREATE TABLE IF NOT EXISTS articles (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    category TEXT DEFAULT '未分类',
-    date TEXT NOT NULL,
-    summary TEXT,
-    content TEXT NOT NULL,
-    source TEXT DEFAULT '',
-    created_at TEXT DEFAULT (datetime('now', 'localtime')),
-    updated_at TEXT DEFAULT (datetime('now', 'localtime'))
-  );
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS subscribers (
+        id SERIAL PRIMARY KEY,
+        email TEXT UNIQUE NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
 
-  CREATE TABLE IF NOT EXISTS contacts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    email TEXT NOT NULL,
-    phone TEXT DEFAULT '',
-    message TEXT NOT NULL,
-    created_at TEXT DEFAULT (datetime('now', 'localtime'))
-  );
-
-  CREATE TABLE IF NOT EXISTS subscribers (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT UNIQUE NOT NULL,
-    created_at TEXT DEFAULT (datetime('now', 'localtime'))
-  );
-`);
-
-// Helper: migrate existing JSON data to SQLite on first run
-function migrateFromJson() {
-  const articlesFile = path.join(DATA_DIR, 'articles.json');
-  if (fs.existsSync(articlesFile)) {
-    try {
-      const existing = JSON.parse(fs.readFileSync(articlesFile, 'utf8'));
-      if (Array.isArray(existing) && existing.length > 0) {
-        const count = db.prepare('SELECT COUNT(*) as c FROM articles').get().c;
-        if (count === 0) {
-          const insert = db.prepare(`
-            INSERT INTO articles (title, category, date, summary, content, source)
-            VALUES (?, ?, ?, ?, ?, ?)
-          `);
-          const migrate = db.transaction((articles) => {
-            for (const a of articles) {
-              const title = typeof a.title === 'object' ? JSON.stringify(a.title) : (a.title || '');
-              const category = typeof a.category === 'object' ? JSON.stringify(a.category) : (a.category || '未分类');
-              const summary = typeof a.summary === 'object' ? JSON.stringify(a.summary) : (a.summary || '');
-              const content = typeof a.content === 'object' ? JSON.stringify(a.content) : (a.content || '');
-              const source = typeof a.source === 'object' ? JSON.stringify(a.source) : (a.source || '');
-              insert.run(title, category, a.date || new Date().toISOString().split('T')[0], summary, content, source);
-            }
-          });
-          migrate(existing);
-          console.log(`Migrated ${existing.length} articles from JSON to SQLite`);
-        }
-      }
-    } catch (e) {
-      console.log('Migration skipped:', e.message);
-    }
-  }
-
-  // Migrate contacts
-  const contactsFile = path.join(DATA_DIR, 'contacts.json');
-  if (fs.existsSync(contactsFile)) {
-    try {
-      const existing = JSON.parse(fs.readFileSync(contactsFile, 'utf8'));
-      if (Array.isArray(existing) && existing.length > 0) {
-        const count = db.prepare('SELECT COUNT(*) as c FROM contacts').get().c;
-        if (count === 0) {
-          const insert = db.prepare(`
-            INSERT INTO contacts (name, email, phone, message) VALUES (?, ?, ?, ?)
-          `);
-          const migrate = db.transaction((contacts) => {
-            for (const c of contacts) {
-              insert.run(c.name || '', c.email || '', c.phone || '', c.message || '');
-            }
-          });
-          migrate(existing);
-          console.log(`Migrated ${existing.length} contacts from JSON to SQLite`);
-        }
-      }
-    } catch (e) {
-      console.log('Contacts migration skipped:', e.message);
-    }
-  }
-
-  // Migrate subscribers
-  const subscribersFile = path.join(DATA_DIR, 'subscribers.json');
-  if (fs.existsSync(subscribersFile)) {
-    try {
-      const existing = JSON.parse(fs.readFileSync(subscribersFile, 'utf8'));
-      if (Array.isArray(existing) && existing.length > 0) {
-        const count = db.prepare('SELECT COUNT(*) as c FROM subscribers').get().c;
-        if (count === 0) {
-          const insert = db.prepare(`
-            INSERT OR IGNORE INTO subscribers (email) VALUES (?)
-          `);
-          const migrate = db.transaction((subs) => {
-            for (const s of subs) {
-              if (s.email) insert.run(s.email);
-            }
-          });
-          migrate(existing);
-          console.log(`Migrated ${existing.length} subscribers from JSON to SQLite`);
-        }
-      }
-    } catch (e) {
-      console.log('Subscribers migration skipped:', e.message);
-    }
+    console.log('Database tables initialized successfully');
+  } catch (error) {
+    console.error('Database initialization error:', error.message);
   }
 }
 
-migrateFromJson();
+initDatabase();
 
 // ============================================================
 // Helper: JSON file read/write (still used by mail and products)
 // ============================================================
+const DATA_DIR = path.join(__dirname, 'data');
+
 function readJsonFile(filename) {
   const filePath = path.join(DATA_DIR, filename);
+  if (!fs.existsSync(filePath)) {
+    return filename === 'products.json' ? [] : [];
+  }
   const data = fs.readFileSync(filePath, 'utf-8');
   return JSON.parse(data);
 }
 
 function writeJsonFile(filename, data) {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
   const filePath = path.join(DATA_DIR, filename);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }
@@ -196,8 +129,6 @@ function writeJsonFile(filename, data) {
 // AI Translation helper
 // ============================================================
 
-// AI Translation helper - translates Chinese text to English
-// Uses a configurable translation provider
 // Translation configuration
 const TRANSLATE_PROVIDER = process.env.TRANSLATE_PROVIDER || 'deepseek'; // 'deepseek' or 'openai'
 const TRANSLATE_API_KEY = process.env.TRANSLATE_API_KEY || '';
@@ -382,11 +313,11 @@ app.get('/api/admin/check', (req, res) => {
 });
 
 // ============================================================
-// Articles API (SQLite)
+// Articles API (PostgreSQL)
 // ============================================================
 
 // GET /api/articles - 获取文章列表（支持分页和分类筛选）
-app.get('/api/articles', (req, res) => {
+app.get('/api/articles', async (req, res) => {
   try {
     const { page = 1, limit = 10, category } = req.query;
     const pageNum = parseInt(page, 10);
@@ -394,24 +325,29 @@ app.get('/api/articles', (req, res) => {
 
     let whereClause = '';
     let params = [];
+    let paramIndex = 1;
 
     if (category) {
-      whereClause = 'WHERE category LIKE ?';
+      whereClause = `WHERE category LIKE $${paramIndex}`;
       params.push(`%${category}%`);
+      paramIndex++;
     }
 
     // Get total count
-    const countResult = db.prepare(`SELECT COUNT(*) as total FROM articles ${whereClause}`).get(...params);
-    const total = countResult.total;
+    const countResult = await pool.query(`SELECT COUNT(*) as total FROM articles ${whereClause}`, params);
+    const total = parseInt(countResult.rows[0].total, 10);
 
     // Get paginated results
-    const articles = db.prepare(
-      `SELECT * FROM articles ${whereClause} ORDER BY id DESC LIMIT ? OFFSET ?`
-    ).all(...params, limitNum, (pageNum - 1) * limitNum);
+    params.push(limitNum);
+    params.push((pageNum - 1) * limitNum);
+    const articlesResult = await pool.query(
+      `SELECT * FROM articles ${whereClause} ORDER BY id DESC LIMIT $${paramIndex} OFFSET $${paramIndex + 1}`,
+      params
+    );
 
     res.json({
       success: true,
-      data: articles,
+      data: articlesResult.rows,
       pagination: {
         page: pageNum,
         limit: limitNum,
@@ -425,13 +361,13 @@ app.get('/api/articles', (req, res) => {
 });
 
 // GET /api/articles/:id - 获取文章详情
-app.get('/api/articles/:id', (req, res) => {
+app.get('/api/articles/:id', async (req, res) => {
   try {
-    const article = db.prepare('SELECT * FROM articles WHERE id = ?').get(req.params.id);
-    if (!article) {
+    const result = await pool.query('SELECT * FROM articles WHERE id = $1', [req.params.id]);
+    if (result.rows.length === 0) {
       return res.status(404).json({ success: false, message: '文章不存在' });
     }
-    res.json({ success: true, data: article });
+    res.json({ success: true, data: result.rows[0] });
   } catch (error) {
     res.status(500).json({ success: false, message: '服务器错误', error: error.message });
   }
@@ -463,12 +399,12 @@ app.post('/api/articles', requireAuth, async (req, res) => {
     const contentJson = JSON.stringify({ zh: content, en: enContent });
     const date = new Date().toISOString().split('T')[0];
 
-    const result = db.prepare(`
-      INSERT INTO articles (title, category, date, summary, content) VALUES (?, ?, ?, ?, ?)
-    `).run(titleJson, categoryJson, date, summaryJson, contentJson);
+    const result = await pool.query(
+      `INSERT INTO articles (title, category, date, summary, content) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+      [titleJson, categoryJson, date, summaryJson, contentJson]
+    );
 
-    const article = db.prepare('SELECT * FROM articles WHERE id = ?').get(result.lastInsertRowid);
-    res.status(201).json({ success: true, data: article });
+    res.status(201).json({ success: true, data: result.rows[0] });
   } catch (error) {
     res.status(500).json({ success: false, message: '服务器错误', error: error.message });
   }
@@ -478,34 +414,35 @@ app.post('/api/articles', requireAuth, async (req, res) => {
 app.put('/api/articles/:id', requireAuth, async (req, res) => {
   try {
     const { title, category, summary, content } = req.body;
-    const existing = db.prepare('SELECT * FROM articles WHERE id = ?').get(req.params.id);
+    const existingResult = await pool.query('SELECT * FROM articles WHERE id = $1', [req.params.id]);
 
-    if (!existing) {
+    if (existingResult.rows.length === 0) {
       return res.status(404).json({ success: false, message: '文章不存在' });
     }
+
+    const existing = existingResult.rows[0];
 
     const titleJson = title ? JSON.stringify({ zh: title, en: title }) : existing.title;
     const categoryJson = category ? JSON.stringify({ zh: category, en: category }) : existing.category;
     const summaryJson = summary ? JSON.stringify({ zh: summary, en: summary }) : existing.summary;
     const contentJson = content ? JSON.stringify({ zh: content, en: content }) : existing.content;
 
-    db.prepare(`
-      UPDATE articles SET title = ?, category = ?, summary = ?, content = ?, updated_at = datetime('now', 'localtime')
-      WHERE id = ?
-    `).run(titleJson, categoryJson, summaryJson, contentJson, req.params.id);
+    const result = await pool.query(
+      `UPDATE articles SET title = $1, category = $2, summary = $3, content = $4, updated_at = CURRENT_TIMESTAMP WHERE id = $5 RETURNING *`,
+      [titleJson, categoryJson, summaryJson, contentJson, req.params.id]
+    );
 
-    const article = db.prepare('SELECT * FROM articles WHERE id = ?').get(req.params.id);
-    res.json({ success: true, data: article });
+    res.json({ success: true, data: result.rows[0] });
   } catch (error) {
     res.status(500).json({ success: false, message: '服务器错误', error: error.message });
   }
 });
 
 // DELETE /api/articles/:id - 删除文章
-app.delete('/api/articles/:id', requireAuth, (req, res) => {
+app.delete('/api/articles/:id', requireAuth, async (req, res) => {
   try {
-    const result = db.prepare('DELETE FROM articles WHERE id = ?').run(req.params.id);
-    if (result.changes === 0) {
+    const result = await pool.query('DELETE FROM articles WHERE id = $1', [req.params.id]);
+    if (result.rowCount === 0) {
       return res.status(404).json({ success: false, message: '文章不存在' });
     }
     res.json({ success: true, message: '文章已删除' });
@@ -517,10 +454,12 @@ app.delete('/api/articles/:id', requireAuth, (req, res) => {
 // PUT /api/articles/:id/translate - 手动触发重新翻译
 app.put('/api/articles/:id/translate', requireAuth, async (req, res) => {
   try {
-    const article = db.prepare('SELECT * FROM articles WHERE id = ?').get(req.params.id);
-    if (!article) {
+    const articleResult = await pool.query('SELECT * FROM articles WHERE id = $1', [req.params.id]);
+    if (articleResult.rows.length === 0) {
       return res.status(404).json({ success: false, message: '文章不存在' });
     }
+
+    const article = articleResult.rows[0];
 
     const getZh = (field) => {
       try { return JSON.parse(article[field]).zh; } catch { return article[field]; }
@@ -538,13 +477,12 @@ app.put('/api/articles/:id/translate', requireAuth, async (req, res) => {
     const summaryJson = JSON.stringify({ zh: getZh('summary'), en: enSummary });
     const contentJson = JSON.stringify({ zh: getZh('content'), en: enContent });
 
-    db.prepare(`
-      UPDATE articles SET title = ?, category = ?, summary = ?, content = ?, updated_at = datetime('now', 'localtime')
-      WHERE id = ?
-    `).run(titleJson, categoryJson, summaryJson, contentJson, req.params.id);
+    const result = await pool.query(
+      `UPDATE articles SET title = $1, category = $2, summary = $3, content = $4, updated_at = CURRENT_TIMESTAMP WHERE id = $5 RETURNING *`,
+      [titleJson, categoryJson, summaryJson, contentJson, req.params.id]
+    );
 
-    const updated = db.prepare('SELECT * FROM articles WHERE id = ?').get(req.params.id);
-    res.json({ success: true, data: updated });
+    res.json({ success: true, data: result.rows[0] });
   } catch (error) {
     res.status(500).json({ success: false, message: '服务器错误', error: error.message });
   }
@@ -567,11 +505,11 @@ app.get('/api/translate/status', (req, res) => {
 });
 
 // ============================================================
-// Contact API (SQLite)
+// Contact API (PostgreSQL)
 // ============================================================
 
 // POST /api/contact - 提交联系表单
-app.post('/api/contact', (req, res) => {
+app.post('/api/contact', async (req, res) => {
   try {
     const { name, email, phone, message } = req.body;
 
@@ -588,13 +526,15 @@ app.post('/api/contact', (req, res) => {
       return res.status(400).json({ success: false, message: '邮箱格式不正确' });
     }
 
-    const result = db.prepare('INSERT INTO contacts (name, email, phone, message) VALUES (?, ?, ?, ?)').run(name, email, phone || '', message);
-    const contact = db.prepare('SELECT * FROM contacts WHERE id = ?').get(result.lastInsertRowid);
+    const result = await pool.query(
+      'INSERT INTO contacts (name, email, phone, message) VALUES ($1, $2, $3, $4) RETURNING *',
+      [name, email, phone || '', message]
+    );
 
     res.status(201).json({
       success: true,
       message: '联系表单提交成功，我们将尽快与您联系',
-      data: contact
+      data: result.rows[0]
     });
   } catch (error) {
     res.status(500).json({ success: false, message: '服务器错误', error: error.message });
@@ -602,11 +542,11 @@ app.post('/api/contact', (req, res) => {
 });
 
 // ============================================================
-// Subscribe API (SQLite)
+// Subscribe API (PostgreSQL)
 // ============================================================
 
 // POST /api/subscribe - 邮箱订阅
-app.post('/api/subscribe', (req, res) => {
+app.post('/api/subscribe', async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -620,18 +560,17 @@ app.post('/api/subscribe', (req, res) => {
     }
 
     // Check if already subscribed
-    const existing = db.prepare('SELECT * FROM subscribers WHERE email = ?').get(email);
-    if (existing) {
+    const existingResult = await pool.query('SELECT * FROM subscribers WHERE email = $1', [email]);
+    if (existingResult.rows.length > 0) {
       return res.status(409).json({ success: false, message: '该邮箱已订阅' });
     }
 
-    const result = db.prepare('INSERT INTO subscribers (email) VALUES (?)').run(email);
-    const subscriber = db.prepare('SELECT * FROM subscribers WHERE id = ?').get(result.lastInsertRowid);
+    const result = await pool.query('INSERT INTO subscribers (email) VALUES ($1) RETURNING *', [email]);
 
     res.status(201).json({
       success: true,
       message: '订阅成功',
-      data: subscriber
+      data: result.rows[0]
     });
   } catch (error) {
     res.status(500).json({ success: false, message: '服务器错误', error: error.message });
@@ -639,22 +578,22 @@ app.post('/api/subscribe', (req, res) => {
 });
 
 // GET /api/subscribers - 获取订阅者列表
-app.get('/api/subscribers', (req, res) => {
+app.get('/api/subscribers', async (req, res) => {
   try {
-    const subscribers = db.prepare('SELECT * FROM subscribers ORDER BY id DESC').all();
-    res.json({ success: true, data: subscribers });
+    const result = await pool.query('SELECT * FROM subscribers ORDER BY id DESC');
+    res.json({ success: true, data: result.rows });
   } catch (error) {
     res.status(500).json({ success: false, message: '服务器错误', error: error.message });
   }
 });
 
 // DELETE /api/subscribers/:email - 取消订阅
-app.delete('/api/subscribers/:email', (req, res) => {
+app.delete('/api/subscribers/:email', async (req, res) => {
   try {
     const email = decodeURIComponent(req.params.email);
-    const result = db.prepare('DELETE FROM subscribers WHERE email = ?').run(email);
+    const result = await pool.query('DELETE FROM subscribers WHERE email = $1', [email]);
 
-    if (result.changes === 0) {
+    if (result.rowCount === 0) {
       return res.status(404).json({ success: false, message: '该邮箱未找到订阅记录' });
     }
 
@@ -806,8 +745,8 @@ app.get('/api/products/:id', (req, res) => {
 app.get('/', (req, res) => {
   res.json({
     name: '豆姜科技 API Server',
-    version: '2.0.0',
-    description: '豆姜科技宣传网站后端服务 (SQLite)',
+    version: '3.0.0',
+    description: '豆姜科技宣传网站后端服务 (PostgreSQL)',
     endpoints: {
       articles: {
         list: 'GET /api/articles?page=1&limit=10&category=xxx',
@@ -876,8 +815,8 @@ if (fs.existsSync(clientBuildPath)) {
 // ============================================================
 app.listen(PORT, () => {
   console.log('========================================');
-  console.log('  豆姜科技 API Server (SQLite)');
+  console.log('  豆姜科技 API Server (PostgreSQL)');
   console.log(`  Server running on http://localhost:${PORT}`);
-  console.log(`  Database: ${DB_PATH}`);
+  console.log(`  Database: PostgreSQL (Neon)`);
   console.log('========================================');
 });

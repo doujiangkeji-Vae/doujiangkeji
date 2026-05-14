@@ -1,11 +1,12 @@
 // Vercel Serverless API Entry Point
 // This file adapts the Express server for Vercel serverless functions
 
-const { Pool } = require('@neondatabase/serverless');
+const { Pool } = require('pg');
 
-// Initialize Neon database connection
+// Initialize PostgreSQL database connection
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_83EWAhNfreQF@ep-empty-dawn-aq9f9zq6.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require',
+  ssl: { rejectUnauthorized: false }
 });
 
 // Admin credentials from env
@@ -165,11 +166,40 @@ module.exports = async (req, res) => {
       return res.status(200).json({ success: true, data: rows[0] });
     }
 
+    if (articleMatch && method === 'PUT') {
+      if (!requireAuth(req)) {
+        return res.status(401).json({ success: false, error: 'Unauthorized' });
+      }
+      
+      const { title, category, summary, content } = req.body;
+      const existingResult = await pool.query('SELECT * FROM articles WHERE id = $1', [articleMatch[1]]);
+      
+      if (existingResult.rows.length === 0) {
+        return res.status(404).json({ success: false, error: 'Not found' });
+      }
+      
+      const existing = existingResult.rows[0];
+      const titleJson = title ? JSON.stringify({ zh: title, en: title }) : existing.title;
+      const categoryJson = category ? JSON.stringify({ zh: category, en: category }) : existing.category;
+      const summaryJson = summary ? JSON.stringify({ zh: summary, en: summary }) : existing.summary;
+      const contentJson = content ? JSON.stringify({ zh: content, en: content }) : existing.content;
+      
+      const { rows } = await pool.query(
+        'UPDATE articles SET title = $1, category = $2, summary = $3, content = $4, updated_at = CURRENT_TIMESTAMP WHERE id = $5 RETURNING *',
+        [titleJson, categoryJson, summaryJson, contentJson, articleMatch[1]]
+      );
+      
+      return res.status(200).json({ success: true, data: rows[0] });
+    }
+
     if (articleMatch && method === 'DELETE') {
       if (!requireAuth(req)) {
         return res.status(401).json({ success: false, error: 'Unauthorized' });
       }
-      await pool.query('DELETE FROM articles WHERE id = $1', [articleMatch[1]]);
+      const result = await pool.query('DELETE FROM articles WHERE id = $1', [articleMatch[1]]);
+      if (result.rowCount === 0) {
+        return res.status(404).json({ success: false, error: 'Not found' });
+      }
       return res.status(200).json({ success: true });
     }
 
@@ -215,21 +245,80 @@ module.exports = async (req, res) => {
       }
     }
 
+    // === Admin Logout ===
+    if (path === '/api/admin/logout' && method === 'POST') {
+      const authHeader = req.headers.authorization || '';
+      const token = authHeader.replace('Bearer ', '');
+      if (token) activeTokens.delete(token);
+      return res.status(200).json({ success: true });
+    }
+
+    // === Admin Check ===
+    if (path === '/api/admin/check' && method === 'GET') {
+      if (requireAuth(req)) {
+        return res.status(200).json({ success: true, authenticated: true });
+      }
+      return res.status(401).json({ success: false, authenticated: false });
+    }
+
     // === Contact Form ===
     if (path === '/api/contact' && method === 'POST') {
       const { name, email, phone, message } = req.body;
-      await pool.query(
-        'INSERT INTO contacts (name, email, phone, message) VALUES ($1, $2, $3, $4)',
+      
+      if (!name || !email || !message) {
+        return res.status(400).json({ success: false, error: 'Missing required fields: name, email, message' });
+      }
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return res.status(400).json({ success: false, error: 'Invalid email format' });
+      }
+      
+      const { rows } = await pool.query(
+        'INSERT INTO contacts (name, email, phone, message) VALUES ($1, $2, $3, $4) RETURNING *',
         [name, email, phone || '', message]
       );
-      return res.status(200).json({ success: true, message: 'Message received' });
+      return res.status(201).json({ success: true, message: 'Message received', data: rows[0] });
     }
 
     // === Subscribe ===
     if (path === '/api/subscribe' && method === 'POST') {
       const { email } = req.body;
-      await pool.query('INSERT INTO subscribers (email) VALUES ($1) ON CONFLICT (email) DO NOTHING', [email]);
-      return res.status(200).json({ success: true, message: 'Subscribed' });
+      
+      if (!email) {
+        return res.status(400).json({ success: false, error: 'Email is required' });
+      }
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return res.status(400).json({ success: false, error: 'Invalid email format' });
+      }
+      
+      // Check if already subscribed
+      const existingResult = await pool.query('SELECT * FROM subscribers WHERE email = $1', [email]);
+      if (existingResult.rows.length > 0) {
+        return res.status(409).json({ success: false, error: 'Email already subscribed' });
+      }
+      
+      const { rows } = await pool.query('INSERT INTO subscribers (email) VALUES ($1) RETURNING *', [email]);
+      return res.status(201).json({ success: true, message: 'Subscribed', data: rows[0] });
+    }
+
+    // === Get Subscribers ===
+    if (path === '/api/subscribers' && method === 'GET') {
+      const { rows } = await pool.query('SELECT * FROM subscribers ORDER BY id DESC');
+      return res.status(200).json({ success: true, data: rows });
+    }
+
+    // === Unsubscribe ===
+    const unsubscribeMatch = path.match(/^\/api\/subscribers\/(.+)$/);
+    if (unsubscribeMatch && method === 'DELETE') {
+      const email = decodeURIComponent(unsubscribeMatch[1]);
+      const result = await pool.query('DELETE FROM subscribers WHERE email = $1', [email]);
+      if (result.rowCount === 0) {
+        return res.status(404).json({ success: false, error: 'Email not found' });
+      }
+      return res.status(200).json({ success: true, message: 'Unsubscribed successfully' });
     }
 
     // === Translate Status ===

@@ -33,10 +33,10 @@ function Footer() {
 
           <div className="footer__links-group">
             <h4 className="footer__links-title">{t(lang, 'footer.productService')}</h4>
-            <Link to={`${prefix}/products`} className="footer__link">AI记忆助手</Link>
-            <Link to={`${prefix}/products`} className="footer__link">AI拾音工牌</Link>
-            <Link to={`${prefix}/products`} className="footer__link">Hermes Agent</Link>
-            <Link to={`${prefix}/products`} className="footer__link">OpenClaw应用</Link>
+            <Link to={`${prefix}/products`} className="footer__link">{t(lang, 'footer.link1')}</Link>
+            <Link to={`${prefix}/products`} className="footer__link">{t(lang, 'footer.link2')}</Link>
+            <Link to={`${prefix}/products`} className="footer__link">{t(lang, 'footer.link3')}</Link>
+            <Link to={`${prefix}/products`} className="footer__link">{t(lang, 'footer.link4')}</Link>
           </div>
 
           <div className="footer__links-group">

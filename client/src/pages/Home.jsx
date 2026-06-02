@@ -81,13 +81,13 @@ function Home() {
               <ScrollAnimation key={product.id} delay={index * 100}>
                 <div className="product-card">
                   <div className="product-card__icon">
-                    <ProductIcon category={product.category} />
+                    <ProductIcon category={product.category.zh} />
                   </div>
-                  <h3 className="product-card__name">{product.name}</h3>
-                  <p className="product-card__brief">{product.brief}</p>
+                  <h3 className="product-card__name">{product.name[lang] || product.name}</h3>
+                  <p className="product-card__brief">{product.brief[lang] || product.brief}</p>
                   <div className="product-card__features">
                     {product.features.slice(0, 3).map((f, i) => (
-                      <span key={i} className="product-card__tag">{f}</span>
+                      <span key={i} className="product-card__tag">{f[lang] || f}</span>
                     ))}
                   </div>
                   <Link to={`${prefix}/products`} className="product-card__link">
@@ -258,6 +258,7 @@ function CountUpNumber({ end, suffix = '' }) {
 }
 
 function ProductIcon({ category }) {
+  // Map Chinese category keys to icons (use Chinese keys as canonical)
   const icons = {
     'AI记忆助手': (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -273,7 +274,7 @@ function ProductIcon({ category }) {
         <circle cx="12" cy="12" r="4" />
       </svg>
     ),
-    'AI标识': (
+    'AI智能体': (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
         <circle cx="12" cy="13" r="4" />

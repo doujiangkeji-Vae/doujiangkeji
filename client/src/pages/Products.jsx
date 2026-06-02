@@ -8,13 +8,14 @@ function Products() {
   const { lang } = useLanguage();
 
   const allLabel = t(lang, 'products.all');
-  const categories = [allLabel, ...new Set(products.map(p => p.category))];
+  // Get unique categories in current language
+  const categories = [allLabel, ...new Set(products.map(p => p.category[lang] || p.category))];
   const [activeCategory, setActiveCategory] = useState(allLabel);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const filtered = activeCategory === allLabel
     ? products
-    : products.filter(p => p.category === activeCategory);
+    : products.filter(p => (p.category[lang] || p.category) === activeCategory);
 
   return (
     <div className="page-wrapper">
@@ -53,15 +54,15 @@ function Products() {
                 <div className="products-grid__card" onClick={() => setSelectedProduct(product)}>
                   <div className="products-grid__card-header">
                     <div className="products-grid__card-icon">
-                      <ProductIcon category={product.category} />
+                      <ProductIcon category={product.category.zh} lang={lang} />
                     </div>
-                    <span className="products-grid__card-category">{product.category}</span>
+                    <span className="products-grid__card-category">{product.category[lang] || product.category}</span>
                   </div>
-                  <h3 className="products-grid__card-name">{product.name}</h3>
-                  <p className="products-grid__card-brief">{product.brief}</p>
+                  <h3 className="products-grid__card-name">{product.name[lang] || product.name}</h3>
+                  <p className="products-grid__card-brief">{product.brief[lang] || product.brief}</p>
                   <div className="products-grid__card-features">
                     {product.features.map((f, i) => (
-                      <span key={i} className="products-grid__card-tag">{f}</span>
+                      <span key={i} className="products-grid__card-tag">{f[lang] || f}</span>
                     ))}
                   </div>
                   <button className="products-grid__card-btn">
@@ -88,14 +89,14 @@ function Products() {
             </button>
             <div className="product-modal__header">
               <div className="product-modal__icon">
-                <ProductIcon category={selectedProduct.category} />
+                <ProductIcon category={selectedProduct.category.zh} lang={lang} />
               </div>
               <div>
-                <span className="product-modal__category">{selectedProduct.category}</span>
-                <h2 className="product-modal__name">{selectedProduct.name}</h2>
+                <span className="product-modal__category">{selectedProduct.category[lang] || selectedProduct.category}</span>
+                <h2 className="product-modal__name">{selectedProduct.name[lang] || selectedProduct.name}</h2>
               </div>
             </div>
-            <p className="product-modal__desc">{selectedProduct.description}</p>
+            <p className="product-modal__desc">{selectedProduct.description[lang] || selectedProduct.description}</p>
             <div className="product-modal__features">
               <h3>{t(lang, 'products.coreFeatures')}</h3>
               <div className="product-modal__features-list">
@@ -104,7 +105,7 @@ function Products() {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
-                    {f}
+                    {f[lang] || f}
                   </div>
                 ))}
               </div>
@@ -112,10 +113,10 @@ function Products() {
             <div className="product-modal__specs">
               <h3>{t(lang, 'products.specs')}</h3>
               <div className="product-modal__specs-table">
-                {Object.entries(selectedProduct.specs).map(([key, value]) => (
-                  <div key={key} className="product-modal__spec-row">
-                    <span className="product-modal__spec-key">{key}</span>
-                    <span className="product-modal__spec-value">{value}</span>
+                {selectedProduct.specs.map((spec, idx) => (
+                  <div key={idx} className="product-modal__spec-row">
+                    <span className="product-modal__spec-key">{spec.key[lang] || spec.key}</span>
+                    <span className="product-modal__spec-value">{spec.value[lang] || spec.value}</span>
                   </div>
                 ))}
               </div>
@@ -135,7 +136,8 @@ function Products() {
   );
 }
 
-function ProductIcon({ category }) {
+function ProductIcon({ category, lang }) {
+  // Map Chinese category keys to icons (use Chinese keys as canonical)
   const icons = {
     'AI记忆助手': (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -151,7 +153,7 @@ function ProductIcon({ category }) {
         <circle cx="12" cy="12" r="4" />
       </svg>
     ),
-    'AI标识': (
+    'AI智能体': (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
         <circle cx="12" cy="13" r="4" />

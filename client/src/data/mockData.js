@@ -3,65 +3,167 @@ export const API_BASE = import.meta.env.VITE_API_BASE || '/api';
 export const products = [
   {
     id: 1,
-    name: 'Memorion AI记忆助手',
-    category: 'AI记忆助手',
-    brief: '24小时不间断的AI记忆伙伴，让你永远不用担心遗忘',
-    description: 'Memorion 是一款AI驱动的可穿戴记忆伙伴，通过专用硬件全天候记录日常对话，结合语音识别（STT）、自然语言处理（NLP）和大语言模型技术，实现对话的自动转录、智能摘要和语义检索。早上戴上，晚上摘下，中间的每一次重要对话都帮你记住。AI自动帮你总结对话，提炼关键信息。支持自然语言提问，秒级获取答案。本地优先存储，端到端加密，隐私安全有保障。',
-    features: ['24小时全天候录音', 'AI智能整理摘要', '自然语言语义检索', '端到端加密保护', 'ESP32-S3开源硬件', '4天超长续航'],
+    name: { zh: 'Memorion AI记忆助手', en: 'Memorion AI Memory Assistant' },
+    category: { zh: 'AI记忆助手', en: 'AI Memory Assistant' },
+    brief: { zh: '24小时不间断的AI记忆伙伴，让你永远不用担心遗忘', en: '24/7 AI memory companion, never worry about forgetting' },
+    description: {
+      zh: 'Memorion 是一款AI驱动的可穿戴记忆伙伴，通过专用硬件全天候记录日常对话，结合语音识别（STT）、自然语言处理（NLP）和大语言模型技术，实现对话的自动转录、智能摘要和语义检索。早上戴上，晚上摘下，中间的每一次重要对话都帮你记住。AI自动帮你总结对话，提炼关键信息。支持自然语言提问，秒级获取答案。本地优先存储，端到端加密，隐私安全有保障。',
+      en: 'Memorion is an AI-powered wearable memory companion that records daily conversations 24/7 through dedicated hardware. Combined with speech recognition (STT), natural language processing (NLP), and large language model technology, it enables automatic transcription, intelligent summarization, and semantic retrieval of conversations. Put it on in the morning, take it off at night, and every important conversation is remembered. AI automatically summarizes conversations and extracts key information. Supports natural language queries for instant answers. Local-first storage with end-to-end encryption ensures privacy and security.'
+    },
+    features: [
+      { zh: '24小时全天候录音', en: '24/7 continuous recording' },
+      { zh: 'AI智能整理摘要', en: 'AI smart summarization' },
+      { zh: '自然语言语义检索', en: 'Natural language semantic search' },
+      { zh: '端到端加密保护', en: 'End-to-end encryption' },
+      { zh: 'ESP32-S3开源硬件', en: 'ESP32-S3 open-source hardware' },
+      { zh: '4天超长续航', en: '4-day ultra-long battery life' }
+    ],
     image: null,
     link: 'http://memorion.me/zh',
-    specs: { '芯片': 'ESP32-S3', '续航': '4天连续录音', '防水': '日常防水', '重量': '比硬币更轻', '连接': '蓝牙5.0自动同步', 'AI平台': 'Sayd API' }
+    specs: [
+      { key: { zh: '芯片', en: 'Chip' }, value: { zh: 'ESP32-S3', en: 'ESP32-S3' } },
+      { key: { zh: '续航', en: 'Battery Life' }, value: { zh: '4天连续录音', en: '4 days continuous recording' } },
+      { key: { zh: '防水', en: 'Water Resistance' }, value: { zh: '日常防水', en: 'Daily water resistance' } },
+      { key: { zh: '重量', en: 'Weight' }, value: { zh: '比硬币更轻', en: 'Lighter than a coin' } },
+      { key: { zh: '连接', en: 'Connection' }, value: { zh: '蓝牙5.0自动同步', en: 'Bluetooth 5.0 auto-sync' } },
+      { key: { zh: 'AI平台', en: 'AI Platform' }, value: { zh: 'Sayd API', en: 'Sayd API' } }
+    ]
   },
   {
     id: 2,
-    name: 'DJ-VoiceBadge AI拾音工牌',
-    category: 'AI拾音工牌',
-    brief: '智能语音采集工牌，实时转录会议内容，AI自动生成纪要',
-    description: 'DJ-VoiceBadge 是一款专为职场场景设计的AI拾音工牌。采用专业级降噪麦克风阵列，360°全向拾音，精准过滤环境噪音。内置AI语音识别引擎，支持多语言实时转录，会议结束后自动生成结构化纪要，包含要点摘要、待办事项和关键决策。轻便佩戴，8小时超长续航，Type-C快充。适用于商务会议、客户拜访、培训课堂等场景。',
-    features: ['360°降噪拾音', '实时语音转文字', 'AI自动生成会议纪要', '8小时超长续航', 'Type-C快充', '轻便佩戴仅28g'],
+    name: { zh: 'DJ-VoiceBadge AI拾音工牌', en: 'DJ-VoiceBadge AI Voice Badge' },
+    category: { zh: 'AI拾音工牌', en: 'AI Voice Badge' },
+    brief: { zh: '智能语音采集工牌，实时转录会议内容，AI自动生成纪要', en: 'Smart voice capture badge, real-time meeting transcription with AI-generated minutes' },
+    description: {
+      zh: 'DJ-VoiceBadge 是一款专为职场场景设计的AI拾音工牌。采用专业级降噪麦克风阵列，360°全向拾音，精准过滤环境噪音。内置AI语音识别引擎，支持多语言实时转录，会议结束后自动生成结构化纪要，包含要点摘要、待办事项和关键决策。轻便佩戴，8小时超长续航，Type-C快充。适用于商务会议、客户拜访、培训课堂等场景。',
+      en: 'DJ-VoiceBadge is an AI voice capture badge designed for workplace scenarios. Featuring a professional-grade noise-canceling microphone array with 360° omnidirectional pickup, it precisely filters environmental noise. Built-in AI speech recognition engine supports multi-language real-time transcription. After meetings, it automatically generates structured minutes including key points, action items, and critical decisions. Lightweight wearable with 8-hour battery life and Type-C fast charging. Ideal for business meetings, client visits, and training sessions.'
+    },
+    features: [
+      { zh: '360°降噪拾音', en: '360° noise-canceling pickup' },
+      { zh: '实时语音转文字', en: 'Real-time speech-to-text' },
+      { zh: 'AI自动生成会议纪要', en: 'AI auto-generated meeting minutes' },
+      { zh: '8小时超长续航', en: '8-hour ultra-long battery life' },
+      { zh: 'Type-C快充', en: 'Type-C fast charging' },
+      { zh: '轻便佩戴仅28g', en: 'Lightweight at only 28g' }
+    ],
     image: null,
-    specs: { '拾音': '360°全向降噪麦克风阵列', '续航': '8小时连续录音', '充电': 'Type-C快充，30分钟充50%', '重量': '仅28g', '语言': '中/英/日多语言识别', '存储': '本地32GB + 云端同步' }
+    specs: [
+      { key: { zh: '拾音', en: 'Audio Pickup' }, value: { zh: '360°全向降噪麦克风阵列', en: '360° omnidirectional noise-canceling mic array' } },
+      { key: { zh: '续航', en: 'Battery Life' }, value: { zh: '8小时连续录音', en: '8 hours continuous recording' } },
+      { key: { zh: '充电', en: 'Charging' }, value: { zh: 'Type-C快充，30分钟充50%', en: 'Type-C fast charge, 50% in 30 mins' } },
+      { key: { zh: '重量', en: 'Weight' }, value: { zh: '仅28g', en: 'Only 28g' } },
+      { key: { zh: '语言', en: 'Languages' }, value: { zh: '中/英/日多语言识别', en: 'Chinese/English/Japanese recognition' } },
+      { key: { zh: '存储', en: 'Storage' }, value: { zh: '本地32GB + 云端同步', en: 'Local 32GB + cloud sync' } }
+    ]
   },
   {
     id: 3,
-    name: 'Hermes Agent应用',
-    category: 'AI智能体',
-    brief: '企业级AI智能体平台，可视化工作流编排，多模态AI能力集成',
-    description: 'Hermes 是豆姜科技推出的企业级AI Agent应用平台。支持可视化工作流编排，无需代码即可构建复杂的AI自动化流程。内置多模态AI能力，支持文本、语音、图像、视频的智能理解与生成。提供企业知识库接入、私有化部署、多LLM模型切换等核心功能。广泛应用于智能客服、文档处理、数据分析、营销自动化等企业场景。开放API接口，可快速集成到现有业务系统。',
-    features: ['可视化工作流编排', '多模态AI能力', '企业知识库接入', '私有化部署', '多LLM模型切换', '开放API接口'],
+    name: { zh: 'Hermes Agent应用', en: 'Hermes Agent Application' },
+    category: { zh: 'AI智能体', en: 'AI Agent' },
+    brief: { zh: '企业级AI智能体平台，可视化工作流编排，多模态AI能力集成', en: 'Enterprise-grade AI Agent platform with visual workflow orchestration and multimodal AI capabilities' },
+    description: {
+      zh: 'Hermes 是豆姜科技推出的企业级AI Agent应用平台。支持可视化工作流编排，无需代码即可构建复杂的AI自动化流程。内置多模态AI能力，支持文本、语音、图像、视频的智能理解与生成。提供企业知识库接入、私有化部署、多LLM模型切换等核心功能。广泛应用于智能客服、文档处理、数据分析、营销自动化等企业场景。开放API接口，可快速集成到现有业务系统。',
+      en: 'Hermes is DouJiang Technology\'s enterprise-grade AI Agent application platform. Supports visual workflow orchestration, enabling complex AI automation flows without coding. Built-in multimodal AI capabilities for intelligent understanding and generation of text, voice, images, and video. Core features include enterprise knowledge base integration, private deployment, and multi-LLM model switching. Widely applied in intelligent customer service, document processing, data analysis, and marketing automation. Open API interfaces for rapid integration with existing business systems.'
+    },
+    features: [
+      { zh: '可视化工作流编排', en: 'Visual workflow orchestration' },
+      { zh: '多模态AI能力', en: 'Multimodal AI capabilities' },
+      { zh: '企业知识库接入', en: 'Enterprise knowledge base integration' },
+      { zh: '私有化部署', en: 'Private deployment' },
+      { zh: '多LLM模型切换', en: 'Multi-LLM model switching' },
+      { zh: '开放API接口', en: 'Open API interfaces' }
+    ],
     image: null,
-    specs: { '支持模型': 'DeepSeek / GPT / Claude / GLM', '部署方式': '云端 / 私有化 / 混合云', '知识库': '支持百万级文档', '并发处理': '支持1000+并发', '接口': 'RESTful API / SDK', '安全': '数据加密 / 权限管控' }
+    specs: [
+      { key: { zh: '支持模型', en: 'Supported Models' }, value: { zh: 'DeepSeek / GPT / Claude / GLM', en: 'DeepSeek / GPT / Claude / GLM' } },
+      { key: { zh: '部署方式', en: 'Deployment' }, value: { zh: '云端 / 私有化 / 混合云', en: 'Cloud / Private / Hybrid' } },
+      { key: { zh: '知识库', en: 'Knowledge Base' }, value: { zh: '支持百万级文档', en: 'Million-level document support' } },
+      { key: { zh: '并发处理', en: 'Concurrency' }, value: { zh: '支持1000+并发', en: '1000+ concurrent connections' } },
+      { key: { zh: '接口', en: 'Interface' }, value: { zh: 'RESTful API / SDK', en: 'RESTful API / SDK' } },
+      { key: { zh: '安全', en: 'Security' }, value: { zh: '数据加密 / 权限管控', en: 'Data encryption / Access control' } }
+    ]
   },
   {
     id: 4,
-    name: 'DJ-WearOne AI穿戴式设备',
-    category: 'AI穿戴式硬件',
-    brief: '全天候AI穿戴设备，健康监测+智能助手+语音交互三合一',
-    description: 'DJ-WearOne 是豆姜科技推出的新一代AI穿戴式硬件。集成高精度健康传感器，支持心率、血氧、体温、睡眠质量实时监测。内置AI语音助手，支持自然语言交互，可随时查询信息、设置提醒、控制智能家居。采用柔性OLED触控屏，佩戴舒适无感。IP68防水，7天超长续航。支持eSIM独立通话，脱离手机也能使用。',
-    features: ['健康实时监测', 'AI语音助手', '柔性OLED屏', 'IP68防水', '7天续航', 'eSIM独立通话'],
+    name: { zh: 'DJ-WearOne AI穿戴式设备', en: 'DJ-WearOne AI Wearable Device' },
+    category: { zh: 'AI穿戴式硬件', en: 'AI Wearable Hardware' },
+    brief: { zh: '全天候AI穿戴设备，健康监测+智能助手+语音交互三合一', en: 'All-day AI wearable with health monitoring, smart assistant, and voice interaction' },
+    description: {
+      zh: 'DJ-WearOne 是豆姜科技推出的新一代AI穿戴式硬件。集成高精度健康传感器，支持心率、血氧、体温、睡眠质量实时监测。内置AI语音助手，支持自然语言交互，可随时查询信息、设置提醒、控制智能家居。采用柔性OLED触控屏，佩戴舒适无感。IP68防水，7天超长续航。支持eSIM独立通话，脱离手机也能使用。',
+      en: 'DJ-WearOne is DouJiang Technology\'s next-generation AI wearable hardware. Integrated high-precision health sensors support real-time monitoring of heart rate, blood oxygen, temperature, and sleep quality. Built-in AI voice assistant supports natural language interaction for instant information queries, reminders, and smart home control. Flexible OLED touchscreen for comfortable wear. IP68 waterproof with 7-day battery life. eSIM support for independent calling without a phone.'
+    },
+    features: [
+      { zh: '健康实时监测', en: 'Real-time health monitoring' },
+      { zh: 'AI语音助手', en: 'AI voice assistant' },
+      { zh: '柔性OLED屏', en: 'Flexible OLED screen' },
+      { zh: 'IP68防水', en: 'IP68 waterproof' },
+      { zh: '7天续航', en: '7-day battery life' },
+      { zh: 'eSIM独立通话', en: 'eSIM independent calling' }
+    ],
     image: null,
-    specs: { '屏幕': '1.47英寸柔性OLED', '传感器': '心率/血氧/体温/加速度', '防水': 'IP68', '续航': '7天典型使用', '连接': '蓝牙5.3 / Wi-Fi / eSIM', '重量': '仅32g' }
+    specs: [
+      { key: { zh: '屏幕', en: 'Screen' }, value: { zh: '1.47英寸柔性OLED', en: '1.47" flexible OLED' } },
+      { key: { zh: '传感器', en: 'Sensors' }, value: { zh: '心率/血氧/体温/加速度', en: 'Heart rate/SpO2/Temp/Accelerometer' } },
+      { key: { zh: '防水', en: 'Water Resistance' }, value: { zh: 'IP68', en: 'IP68' } },
+      { key: { zh: '续航', en: 'Battery Life' }, value: { zh: '7天典型使用', en: '7 days typical use' } },
+      { key: { zh: '连接', en: 'Connection' }, value: { zh: '蓝牙5.3 / Wi-Fi / eSIM', en: 'Bluetooth 5.3 / Wi-Fi / eSIM' } },
+      { key: { zh: '重量', en: 'Weight' }, value: { zh: '仅32g', en: 'Only 32g' } }
+    ]
   },
   {
     id: 5,
-    name: 'DJ-Locator AI定位追踪',
-    category: 'AI定位追踪',
-    brief: 'AI赋能的智能定位追踪系统，支持室内外全场景精准定位',
-    description: 'DJ-Locator 是一款AI赋能的智能定位追踪设备。支持GPS/北斗双模卫星定位，结合UWB超宽带室内定位技术，实现室内外无缝切换，定位精度可达厘米级。内置AI轨迹分析引擎，可自动识别异常行为并实时预警。超薄卡片式设计，厚度仅6mm，可轻松放入钱包或贴附于物品上。支持电子围栏、历史轨迹回放、多设备管理等功能。适用于儿童安全、老人看护、资产追踪、宠物防丢等场景。',
-    features: ['室内外厘米级定位', 'AI轨迹分析预警', '电子围栏', '超薄6mm设计', '6个月超长待机', '多设备管理'],
+    name: { zh: 'DJ-Locator AI定位追踪', en: 'DJ-Locator AI Location Tracker' },
+    category: { zh: 'AI定位追踪', en: 'AI Location Tracking' },
+    brief: { zh: 'AI赋能的智能定位追踪系统，支持室内外全场景精准定位', en: 'AI-powered smart tracking system with precise indoor/outdoor positioning' },
+    description: {
+      zh: 'DJ-Locator 是一款AI赋能的智能定位追踪设备。支持GPS/北斗双模卫星定位，结合UWB超宽带室内定位技术，实现室内外无缝切换，定位精度可达厘米级。内置AI轨迹分析引擎，可自动识别异常行为并实时预警。超薄卡片式设计，厚度仅6mm，可轻松放入钱包或贴附于物品上。支持电子围栏、历史轨迹回放、多设备管理等功能。适用于儿童安全、老人看护、资产追踪、宠物防丢等场景。',
+      en: 'DJ-Locator is an AI-powered smart positioning and tracking device. Supports GPS/BeiDou dual-mode satellite positioning combined with UWB ultra-wideband indoor positioning technology for seamless indoor/outdoor switching with centimeter-level accuracy. Built-in AI trajectory analysis engine automatically identifies abnormal behaviors and provides real-time alerts. Ultra-thin card design at only 6mm thickness, easily fits in wallets or attaches to items. Supports geofencing, historical trajectory replay, and multi-device management. Ideal for child safety, elderly care, asset tracking, and pet anti-loss scenarios.'
+    },
+    features: [
+      { zh: '室内外厘米级定位', en: 'Indoor/outdoor centimeter-level positioning' },
+      { zh: 'AI轨迹分析预警', en: 'AI trajectory analysis & alerts' },
+      { zh: '电子围栏', en: 'Geofencing' },
+      { zh: '超薄6mm设计', en: 'Ultra-thin 6mm design' },
+      { zh: '6个月超长待机', en: '6-month ultra-long standby' },
+      { zh: '多设备管理', en: 'Multi-device management' }
+    ],
     image: null,
-    specs: { '室外定位': 'GPS/北斗双模 ≤2.5m', '室内定位': 'UWB超宽带 ≤10cm', '电池': '6000mAh', '待机': '6个月', '尺寸': '86×54×6mm', '防水': 'IP67' }
+    specs: [
+      { key: { zh: '室外定位', en: 'Outdoor Positioning' }, value: { zh: 'GPS/北斗双模 ≤2.5m', en: 'GPS/BeiDou dual-mode ≤2.5m' } },
+      { key: { zh: '室内定位', en: 'Indoor Positioning' }, value: { zh: 'UWB超宽带 ≤10cm', en: 'UWB ultra-wideband ≤10cm' } },
+      { key: { zh: '电池', en: 'Battery' }, value: { zh: '6000mAh', en: '6000mAh' } },
+      { key: { zh: '待机', en: 'Standby' }, value: { zh: '6个月', en: '6 months' } },
+      { key: { zh: '尺寸', en: 'Dimensions' }, value: { zh: '86×54×6mm', en: '86×54×6mm' } },
+      { key: { zh: '防水', en: 'Water Resistance' }, value: { zh: 'IP67', en: 'IP67' } }
+    ]
   },
   {
     id: 6,
-    name: 'OpenClaw AI应用平台',
-    category: 'OpenClaw应用',
-    brief: '开源AI Agent应用平台，快速构建企业级AI智能体',
-    description: 'OpenClaw 是豆姜科技推出的开源AI Agent应用平台。基于大语言模型技术，提供可视化AI工作流编排、多模型接入、知识库管理、插件生态等核心能力。企业用户无需编写代码，即可快速构建专属AI智能体，应用于客服问答、文档处理、数据分析、流程自动化等场景。支持私有化部署，数据完全自主可控。已开放API接口，开发者可基于OpenClaw构建自定义AI应用。',
-    features: ['可视化工作流编排', '多LLM模型接入', '企业知识库', '插件生态市场', '私有化部署', '开放API'],
+    name: { zh: 'OpenClaw AI应用平台', en: 'OpenClaw AI Application Platform' },
+    category: { zh: 'OpenClaw应用', en: 'OpenClaw Application' },
+    brief: { zh: '开源AI Agent应用平台，快速构建企业级AI智能体', en: 'Open-source AI Agent platform for rapid enterprise AI agent development' },
+    description: {
+      zh: 'OpenClaw 是豆姜科技推出的开源AI Agent应用平台。基于大语言模型技术，提供可视化AI工作流编排、多模型接入、知识库管理、插件生态等核心能力。企业用户无需编写代码，即可快速构建专属AI智能体，应用于客服问答、文档处理、数据分析、流程自动化等场景。支持私有化部署，数据完全自主可控。已开放API接口，开发者可基于OpenClaw构建自定义AI应用。',
+      en: 'OpenClaw is DouJiang Technology\'s open-source AI Agent application platform. Based on large language model technology, it provides visual AI workflow orchestration, multi-model integration, knowledge base management, and plugin ecosystem. Enterprise users can rapidly build custom AI agents without coding for customer service Q&A, document processing, data analysis, and process automation. Supports private deployment with fully controllable data. Open API interfaces enable developers to build custom AI applications on OpenClaw.'
+    },
+    features: [
+      { zh: '可视化工作流编排', en: 'Visual workflow orchestration' },
+      { zh: '多LLM模型接入', en: 'Multi-LLM model integration' },
+      { zh: '企业知识库', en: 'Enterprise knowledge base' },
+      { zh: '插件生态市场', en: 'Plugin ecosystem marketplace' },
+      { zh: '私有化部署', en: 'Private deployment' },
+      { zh: '开放API', en: 'Open API' }
+    ],
     image: null,
     link: 'https://openclaw.com/',
-    specs: { '模型支持': 'GPT-4 / Claude / 通义千问 / 文心一言', '部署方式': '云端SaaS / 私有化部署', '知识库': '支持PDF/Word/网页/数据库', 'API': 'RESTful API + WebSocket', '插件': '100+官方插件', '安全': '端到端加密 + RBAC权限' }
+    specs: [
+      { key: { zh: '模型支持', en: 'Model Support' }, value: { zh: 'GPT-4 / Claude / 通义千问 / 文心一言', en: 'GPT-4 / Claude / Tongyi / Wenxin' } },
+      { key: { zh: '部署方式', en: 'Deployment' }, value: { zh: '云端SaaS / 私有化部署', en: 'Cloud SaaS / Private deployment' } },
+      { key: { zh: '知识库', en: 'Knowledge Base' }, value: { zh: '支持PDF/Word/网页/数据库', en: 'PDF/Word/Web/Database support' } },
+      { key: { zh: 'API', en: 'API' }, value: { zh: 'RESTful API + WebSocket', en: 'RESTful API + WebSocket' } },
+      { key: { zh: '插件', en: 'Plugins' }, value: { zh: '100+官方插件', en: '100+ official plugins' } },
+      { key: { zh: '安全', en: 'Security' }, value: { zh: '端到端加密 + RBAC权限', en: 'End-to-end encryption + RBAC' } }
+    ]
   }
 ];
 

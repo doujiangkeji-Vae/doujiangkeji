@@ -160,7 +160,7 @@ const translations = {
     'footer.enterpriseEmail': 'Enterprise Email',
     'footer.link1': 'AI Memory Assistant',
     'footer.link2': 'AI Voice Badge',
-    'footer.link3': 'AI Tag',
+    'footer.link3': 'Hermes Agent',
     'footer.link4': 'OpenClaw App',
     'footer.contactUs': 'Contact Us',
 
@@ -370,7 +370,7 @@ const translations = {
     'footer.enterpriseEmail': '企业邮箱',
     'footer.link1': 'AI记忆助手',
     'footer.link2': 'AI拾音工牌',
-    'footer.link3': 'AI标识',
+    'footer.link3': 'Hermes Agent应用',
     'footer.link4': 'OpenClaw应用',
     'footer.contactUs': '联系我们',
 

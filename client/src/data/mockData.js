@@ -5,7 +5,7 @@ export const products = [
     id: 1,
     name: { zh: 'Memorion AI记忆助手', en: 'Memorion AI Memory Assistant' },
     category: { zh: 'AI记忆助手', en: 'AI Memory Assistant' },
-    price: 299,
+    price: 599,
     brief: { zh: '24小时不间断的AI记忆伙伴，让你永远不用担心遗忘', en: '24/7 AI memory companion, never worry about forgetting' },
     description: {
       zh: 'Memorion 是一款AI驱动的可穿戴记忆伙伴，通过专用硬件全天候记录日常对话，结合语音识别（STT）、自然语言处理（NLP）和大语言模型技术，实现对话的自动转录、智能摘要和语义检索。早上戴上，晚上摘下，中间的每一次重要对话都帮你记住。AI自动帮你总结对话，提炼关键信息。支持自然语言提问，秒级获取答案。本地优先存储，端到端加密，隐私安全有保障。',

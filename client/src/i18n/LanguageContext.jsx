@@ -15,6 +15,15 @@ export function LanguageProvider({ children }) {
   useEffect(() => {
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
 
+    // 更新 hreflang 链接
+    const zhLink = document.querySelector('link[hreflang="zh"]');
+    const enLink = document.querySelector('link[hreflang="en"]');
+    const xDefaultLink = document.querySelector('link[hreflang="x-default"]');
+    const currentPath = location.pathname.replace(/^\/cn/, '') || '/';
+    if (zhLink) zhLink.href = 'https://djkj.top/cn' + currentPath;
+    if (enLink) enLink.href = 'https://djkj.top' + currentPath;
+    if (xDefaultLink) xDefaultLink.href = 'https://djkj.top' + currentPath;
+
     const path = location.pathname.replace(/^\/cn/, '') || '/';
     const titles = {
       '/': lang === 'zh' ? '豆姜科技 | 智造未来，连接万物' : 'DouJiang Technology | Smart Future, Connected World',

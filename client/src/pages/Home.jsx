@@ -4,6 +4,7 @@ import ScrollAnimation from '../components/ScrollAnimation';
 import { useCountUp, useScrollAnimation } from '../hooks/useAnimations';
 import { products, newsArticles } from '../data/mockData';
 import { useLanguage, t } from '../i18n';
+import { formatPrice } from '../data/currency';
 import './Home.css';
 
 function Home() {
@@ -90,6 +91,7 @@ function Home() {
                       <span key={i} className="product-card__tag">{f[lang] || f}</span>
                     ))}
                   </div>
+                  <div className="product-card__price">{formatPrice(product.price, lang)}</div>
                   <Link to={`${prefix}/products`} className="product-card__link">
                     {t(lang, 'home.viewDetails')}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

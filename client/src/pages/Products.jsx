@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ScrollAnimation from '../components/ScrollAnimation';
 import { useLanguage, t } from '../i18n';
 import { products } from '../data/mockData';
+import { formatPrice } from '../data/currency';
 import './Products.css';
 
 function Products() {
@@ -65,6 +66,7 @@ function Products() {
                       <span key={i} className="products-grid__card-tag">{f[lang] || f}</span>
                     ))}
                   </div>
+                  <div className="products-grid__card-price">{formatPrice(product.price, lang)}</div>
                   <button className="products-grid__card-btn">
                     {t(lang, 'products.viewDetails')}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -94,6 +96,7 @@ function Products() {
               <div>
                 <span className="product-modal__category">{selectedProduct.category[lang] || selectedProduct.category}</span>
                 <h2 className="product-modal__name">{selectedProduct.name[lang] || selectedProduct.name}</h2>
+                <div className="product-modal__price">{formatPrice(selectedProduct.price, lang)}</div>
               </div>
             </div>
             <p className="product-modal__desc">{selectedProduct.description[lang] || selectedProduct.description}</p>

@@ -5,6 +5,7 @@ export const products = [
     id: 1,
     name: { zh: 'Memorion AI记忆助手', en: 'Memorion AI Memory Assistant' },
     category: { zh: 'AI记忆助手', en: 'AI Memory Assistant' },
+    price: 299,
     brief: { zh: '24小时不间断的AI记忆伙伴，让你永远不用担心遗忘', en: '24/7 AI memory companion, never worry about forgetting' },
     description: {
       zh: 'Memorion 是一款AI驱动的可穿戴记忆伙伴，通过专用硬件全天候记录日常对话，结合语音识别（STT）、自然语言处理（NLP）和大语言模型技术，实现对话的自动转录、智能摘要和语义检索。早上戴上，晚上摘下，中间的每一次重要对话都帮你记住。AI自动帮你总结对话，提炼关键信息。支持自然语言提问，秒级获取答案。本地优先存储，端到端加密，隐私安全有保障。',
@@ -33,6 +34,7 @@ export const products = [
     id: 2,
     name: { zh: 'DJ-VoiceBadge AI拾音工牌', en: 'DJ-VoiceBadge AI Voice Badge' },
     category: { zh: 'AI拾音工牌', en: 'AI Voice Badge' },
+    price: 199,
     brief: { zh: '智能语音采集工牌，实时转录会议内容，AI自动生成纪要', en: 'Smart voice capture badge, real-time meeting transcription with AI-generated minutes' },
     description: {
       zh: 'DJ-VoiceBadge 是一款专为职场场景设计的AI拾音工牌。采用专业级降噪麦克风阵列，360°全向拾音，精准过滤环境噪音。内置AI语音识别引擎，支持多语言实时转录，会议结束后自动生成结构化纪要，包含要点摘要、待办事项和关键决策。轻便佩戴，8小时超长续航，Type-C快充。适用于商务会议、客户拜访、培训课堂等场景。',
@@ -60,6 +62,7 @@ export const products = [
     id: 3,
     name: { zh: 'Hermes Agent应用', en: 'Hermes Agent Application' },
     category: { zh: 'AI智能体', en: 'AI Agent' },
+    price: 999,
     brief: { zh: '企业级AI智能体平台，可视化工作流编排，多模态AI能力集成', en: 'Enterprise-grade AI Agent platform with visual workflow orchestration and multimodal AI capabilities' },
     description: {
       zh: 'Hermes 是豆姜科技推出的企业级AI Agent应用平台。支持可视化工作流编排，无需代码即可构建复杂的AI自动化流程。内置多模态AI能力，支持文本、语音、图像、视频的智能理解与生成。提供企业知识库接入、私有化部署、多LLM模型切换等核心功能。广泛应用于智能客服、文档处理、数据分析、营销自动化等企业场景。开放API接口，可快速集成到现有业务系统。',
@@ -87,6 +90,7 @@ export const products = [
     id: 4,
     name: { zh: 'DJ-WearOne AI穿戴式设备', en: 'DJ-WearOne AI Wearable Device' },
     category: { zh: 'AI穿戴式硬件', en: 'AI Wearable Hardware' },
+    price: 599,
     brief: { zh: '全天候AI穿戴设备，健康监测+智能助手+语音交互三合一', en: 'All-day AI wearable with health monitoring, smart assistant, and voice interaction' },
     description: {
       zh: 'DJ-WearOne 是豆姜科技推出的新一代AI穿戴式硬件。集成高精度健康传感器，支持心率、血氧、体温、睡眠质量实时监测。内置AI语音助手，支持自然语言交互，可随时查询信息、设置提醒、控制智能家居。采用柔性OLED触控屏，佩戴舒适无感。IP68防水，7天超长续航。支持eSIM独立通话，脱离手机也能使用。',
@@ -141,6 +145,7 @@ export const products = [
     id: 6,
     name: { zh: 'OpenClaw AI应用平台', en: 'OpenClaw AI Application Platform' },
     category: { zh: 'OpenClaw应用', en: 'OpenClaw Application' },
+    price: 0,
     brief: { zh: '开源AI Agent应用平台，快速构建企业级AI智能体', en: 'Open-source AI Agent platform for rapid enterprise AI agent development' },
     description: {
       zh: 'OpenClaw 是豆姜科技推出的开源AI Agent应用平台。基于大语言模型技术，提供可视化AI工作流编排、多模型接入、知识库管理、插件生态等核心能力。企业用户无需编写代码，即可快速构建专属AI智能体，应用于客服问答、文档处理、数据分析、流程自动化等场景。支持私有化部署，数据完全自主可控。已开放API接口，开发者可基于OpenClaw构建自定义AI应用。',

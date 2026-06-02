@@ -75,6 +75,11 @@ function Footer() {
 
         <div className="footer__bottom">
           <p>{t(lang, 'footer.copyright')}</p>
+          <p className="footer__icp">
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
+              浙ICP备2026038175号-1
+            </a>
+          </p>
           <div className="footer__bottom-links">
             <Link to={`${prefix}/privacy`} className="footer__link">{t(lang, 'footer.privacy')}</Link>
             <Link to={`${prefix}/terms`} className="footer__link">{t(lang, 'footer.terms')}</Link>

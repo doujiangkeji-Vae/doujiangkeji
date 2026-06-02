@@ -3,8 +3,9 @@
   "outputDirectory": "client/dist",
   "framework": "vite",
   "rewrites": [
-    { "source": "/maintenance.html", "destination": "/maintenance.html" },
-    { "source": "/(.*)", "destination": "/maintenance.html" }
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
+    { "source": "/cn/:path*", "destination": "/index.html" },
+    { "source": "/((?!assets/|api/|.*\\.txt$|.*\\.xml$).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
